@@ -6,7 +6,7 @@
 #    By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2021/12/16 16:00:17 by tblanco          ###   ########.fr        #
+#    Updated: 2021/12/19 12:49:56 by tblanco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCDIRS	= $(foreach dir, $(DIRS), $(addprefix $(SRCDIR)/, $(dir)))
 OBJDIRS = $(foreach dir, $(DIRS), $(addprefix $(OBJDIR)/, $(dir)))
 
 # Create a list of *.c sources in DIRS
-SRCS = $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+SRCS = $(wildcard src/*.c)
+SRCS += $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 
 # Define objects for all sources
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
@@ -44,10 +45,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 all			: buildrepo $(NAME)
 
 $(NAME)		: $(OBJS)
-	$(MAKE) -C $(LIBFTDIR)
-# $(HIDE)ar rc $@ $(OBJS)
-# $(HIDE)ranlib $@
-# @printf $(GREEN)"[$@] lib created\n"$(RESET)
+	$(HIDE)$(MAKE) -C $(LIBFTDIR)
+	$(HIDE)$(CC) $(CFLAGS) $(OBJS) -L./libft -lft -o $(NAME)
+	@printf $(GREEN)"[$@] program created\n"$(RESET)
 	
 clean		:
 	$(HIDE)rm -rf $(OBJDIR)
@@ -65,14 +65,18 @@ print	:
 	@echo $(DIRS)
 	@echo $(SRCS)
 
+test	: all
+	./push_swap 2 1 3 6 5 8
+
 .PHONY		: clean fclean all re $(OBJDIR) buildrepo print
 
 # Create 
 define make-repo
-   for dir in $(DIRS); \
-   do \
+	$(HIDE)mkdir -p $(OBJDIR)
+	$(HIDE)for dir in $(DIRS); \
+   	do \
 	mkdir -p $(OBJDIR)/$$dir; \
-   done
+   	done
 endef
 
 # Color
