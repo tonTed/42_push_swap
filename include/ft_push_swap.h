@@ -6,12 +6,14 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2021/12/19 11:26:28 by tblanco          ###   ########.fr       */
+/*   Updated: 2021/12/20 11:30:13 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
+# include "stdbool.h"
+# include "../libft/include/libft.h"
 
 
 
