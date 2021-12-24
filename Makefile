@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2021/12/23 19:50:40 by tonted           ###   ########.fr        #
+#    Updated: 2021/12/24 13:10:04 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFTDIR := libft
 NAME = push_swap
 
 # Decide whether the commands will be shwon or not
-VERBOSE = TRUE
+VERBOSE = FALSE
 
 # Create the list of directories
 DIRS = $(shell find $(SRCDIR) -type d | sed 's/$(SRCDIR)\///g' | sed -n '1!p')
@@ -58,6 +58,8 @@ fclean		: clean
 	$(HIDE)rm -f $(NAME)
 	$(HIDE)$(MAKE) fclean -C $(LIBFTDIR)
 
+re			: fclean all
+
 buildrepo	:
 	$(HIDE)$(call make-repo)
 
@@ -65,8 +67,19 @@ print	:
 	@echo $(DIRS)
 	@echo $(SRCS)
 
-test	: all
-	./push_swap 2 1 3 6 5 8
+STR = "2 1 3 6 5 8"
+ARGS = 2 1 3 6 5 8
+tvs	: re
+	valgrind --leak-check=yes ./push_swap $(STR)
+
+tva	: re
+	valgrind --leak-check=yes ./push_swap $(ARGS)
+
+tls	: re
+	leaks -atExit -- ./push_swap $(STR) | grep "total leaked bytes"
+
+tla	: re
+	leaks -atExit -- ./push_swap $(ARGS) | grep "total leaked bytes"
 
 .PHONY		: clean fclean all re $(OBJDIR) buildrepo print
 
