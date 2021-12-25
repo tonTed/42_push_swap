@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2021/12/24 13:10:04 by tonted           ###   ########.fr        #
+#    Updated: 2021/12/24 20:58:38 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,19 +67,25 @@ print	:
 	@echo $(DIRS)
 	@echo $(SRCS)
 
-STR = "2 1 3 6 5 8"
-ARGS = 2 1 3 6 5 8
-tvs	: re
-	valgrind --leak-check=yes ./push_swap $(STR)
+VALGRIND = -valgrind --leak-check=full -q
+test	: re
+	@printf $(BLUE)"\n>>>> "$(RESET)
+	$(VALGRIND) ./push_swap
+	@printf $(BLUE)"\n>>>> "$(RESET)
+	$(VALGRIND) ./push_swap "0"
+	@printf $(BLUE)"\n>>>> "$(RESET)
+	$(VALGRIND) ./push_swap a
+	@printf $(BLUE)"\n>>>> "$(RESET)
+	$(VALGRIND) ./push_swap "-1 0 5 69"
+	@printf $(BLUE)"\n>>>> "$(RESET)
+	$(VALGRIND) ./push_swap 5 -003 -2147483649
+	@printf $(BLUE)"\n>>>> "$(RESET)
+	$(VALGRIND) ./push_swap "-1 g 5 69"
+	@printf $(BLUE)"\n>>>> "$(RESET)
+	$(VALGRIND) ./push_swap 5 7 3 90 3
 
-tva	: re
-	valgrind --leak-check=yes ./push_swap $(ARGS)
+	@printf $(GREEN)"\nEND OF TEST\n"$(RESET)
 
-tls	: re
-	leaks -atExit -- ./push_swap $(STR) | grep "total leaked bytes"
-
-tla	: re
-	leaks -atExit -- ./push_swap $(ARGS) | grep "total leaked bytes"
 
 .PHONY		: clean fclean all re $(OBJDIR) buildrepo print
 
