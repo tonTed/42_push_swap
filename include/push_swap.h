@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2021/12/25 22:32:40 by tonted           ###   ########.fr       */
+/*   Updated: 2021/12/25 23:14:59 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "../libft/include/libft.h"
-
-bool	isnumberzero(char *str);
-bool	isduplicatenumbers(int *tab, int len);
-void	quicksort(int **tab, int start, int end);
-bool	ft_issorted(int *tab, size_t len);
 
 # include <stdio.h>
 #endif

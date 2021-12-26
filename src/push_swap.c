@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2021/12/24 21:16:46 by tonted           ###   ########.fr       */
+/*   Updated: 2021/12/25 23:20:25 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	*create_tabint(char **tabstr)
 			freeexit(&tabstr, &tabint);
 		i++;
 	}
-	if (isduplicatenumbers(tabint, lentab))
+	if (ft_isduplicates(tabint, lentab))
 		freeexit(&tabstr, &tabint);
 	ft_freetabstr(&tabstr);
 	return (tabint);
