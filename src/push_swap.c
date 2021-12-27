@@ -6,20 +6,22 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2021/12/25 23:20:25 by tonted           ###   ########.fr       */
+/*   Updated: 2021/12/27 11:47:46 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	freeexit(char ***tabstr, int **tabint)
+void	freeexit(char ***tabstr, int **tabint, char *message)
 {
 	if (tabstr)
 		ft_freetabstr(tabstr);
 	if (tabint)
 		ft_freetabint(tabint);
-	ft_errorendl_fd(STDERR_FILENO);
-	exit(EXIT_FAILURE);
+	ft_errorendl_fd(STDERR_FILENO, message);
+	if (*message)
+		exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
 }
 
 char	**create_tabstr(char **argv, int argc)
@@ -43,7 +45,7 @@ char	**create_tabstr(char **argv, int argc)
 		tab[i] = NULL;
 	}
 	if (!ft_isnumberstab(tab))
-		freeexit(&tab, NULL);
+		freeexit(&tab, NULL, "Error\n");
 	return (tab);
 }
 
@@ -60,11 +62,13 @@ int	*create_tabint(char **tabstr)
 	{
 		tabint[i] = ft_atoi(tabstr[i]);
 		if (tabint[i] == 0 && isnumberzero(tabstr[i]) == false)
-			freeexit(&tabstr, &tabint);
+			freeexit(&tabstr, &tabint, "Error\n");
 		i++;
 	}
 	if (ft_isduplicates(tabint, lentab))
-		freeexit(&tabstr, &tabint);
+		freeexit(&tabstr, &tabint, "Error\n");
+	if (ft_issorted(tabint, lentab))
+		freeexit(&tabstr, &tabint, "");
 	ft_freetabstr(&tabstr);
 	return (tabint);
 }
