@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2021/12/24 20:58:38 by tonted           ###   ########.fr        #
+#    Updated: 2021/12/27 11:39:06 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,8 +67,10 @@ print	:
 	@echo $(DIRS)
 	@echo $(SRCS)
 
+test	: docker
+
 VALGRIND = -valgrind --leak-check=full -q
-test	: re
+_test	:  re
 	@printf $(BLUE)"\n>>>> "$(RESET)
 	$(VALGRIND) ./push_swap
 	@printf $(BLUE)"\n>>>> "$(RESET)
@@ -83,9 +85,14 @@ test	: re
 	$(VALGRIND) ./push_swap "-1 g 5 69"
 	@printf $(BLUE)"\n>>>> "$(RESET)
 	$(VALGRIND) ./push_swap 5 7 3 90 3
+	@printf $(BLUE)"\n>>>> "$(RESET)
+	$(VALGRIND) ./push_swap 5 7 90 3
 
 	@printf $(GREEN)"\nEND OF TEST\n"$(RESET)
 
+docker		:
+	docker build ../ -t 42/valgrind
+	docker run --rm -it --name valgrind -v /Users/tonted/42:/42projects 42/valgrind
 
 .PHONY		: clean fclean all re $(OBJDIR) buildrepo print
 
