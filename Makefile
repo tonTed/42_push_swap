@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2021/12/27 11:39:06 by tonted           ###   ########.fr        #
+#    Updated: 2021/12/27 18:43:00 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,11 @@ buildrepo	:
 print	:
 	@echo $(DIRS)
 	@echo $(SRCS)
+
+ltest	:
+	$(HIDE)$(MAKE) -C $(LIBFTDIR)
+	$(HIDE)$(CC) $(CFLAGS) main.c -L./libft -lft -o ltest
+	./ltest "2 6 1 90 -1 30"
 
 test	: docker
 

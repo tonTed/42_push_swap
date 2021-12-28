@@ -6,23 +6,11 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2021/12/27 11:47:46 by tonted           ###   ########.fr       */
+/*   Updated: 2021/12/27 19:06:32 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	freeexit(char ***tabstr, int **tabint, char *message)
-{
-	if (tabstr)
-		ft_freetabstr(tabstr);
-	if (tabint)
-		ft_freetabint(tabint);
-	ft_errorendl_fd(STDERR_FILENO, message);
-	if (*message)
-		exit(EXIT_FAILURE);
-	exit(EXIT_SUCCESS);
-}
 
 char	**create_tabstr(char **argv, int argc)
 {
@@ -49,39 +37,15 @@ char	**create_tabstr(char **argv, int argc)
 	return (tab);
 }
 
-int	*create_tabint(char **tabstr)
-{
-	int		*tabint;
-	int		lentab;
-	int		i;
-
-	lentab = ft_strtablen(tabstr);
-	tabint = (int *)malloc(sizeof(int) * lentab);
-	i = 0;
-	while (i < lentab)
-	{
-		tabint[i] = ft_atoi(tabstr[i]);
-		if (tabint[i] == 0 && isnumberzero(tabstr[i]) == false)
-			freeexit(&tabstr, &tabint, "Error\n");
-		i++;
-	}
-	if (ft_isduplicates(tabint, lentab))
-		freeexit(&tabstr, &tabint, "Error\n");
-	if (ft_issorted(tabint, lentab))
-		freeexit(&tabstr, &tabint, "");
-	ft_freetabstr(&tabstr);
-	return (tabint);
-}
-
 int	main(int argc, char **argv)
 {
-	char	**tab;
-	int		*tabint;
+	char		**tab;
+	t_tabint	tabint;
 
 	tab = create_tabstr(argv, argc);
 	if (!tab)
 		return (EXIT_FAILURE);
 	tabint = create_tabint(tab);
-	free(tabint);
+	free(tabint.tab);
 	return (EXIT_SUCCESS);
 }
