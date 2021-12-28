@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2021/12/27 19:47:13 by tonted           ###   ########.fr       */
+/*   Updated: 2021/12/28 12:42:23 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,16 @@ char	**create_tabstr(char **argv, int argc)
 	return (tab);
 }
 
-t_stack	create_stack(t_tabint tab, bool empty)
+t_stack	create_stack(t_tabint tab, bool empty, char name)
 {
 	t_stack	stack;
 
 	stack.last_i = malloc(sizeof(size_t));
+	stack.name = name;
 	if (empty)
 	{
 		stack.tab.tab = (int *)malloc(sizeof(int) * tab.size);
-		*stack.last_i = tab.size - 1;
+		*stack.last_i = 0;
 	}
 	else
 	{
@@ -67,9 +68,9 @@ int	main(int argc, char **argv)
 	if (!tab)
 		return (EXIT_FAILURE);
 	tabint = create_tabint(tab);
-	stack_a = create_stack(tabint, false);
-	stack_b = create_stack(tabint, true);
-	
+	stack_a = create_stack(tabint, false, 'a');
+	stack_b = create_stack(tabint, true, 'b');
+
 	// TODO improve free items
 	free(tabint.tab);
 	free(stack_a.last_i);
