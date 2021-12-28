@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2021/12/27 18:43:00 by tonted           ###   ########.fr        #
+#    Updated: 2021/12/28 12:40:13 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ NAME = push_swap
 # Decide whether the commands will be shwon or not
 VERBOSE = FALSE
 
+ENTRYPOINT = src/push_swap.c
+UTEST = test/main.c
+
 # Create the list of directories
 DIRS = $(shell find $(SRCDIR) -type d | sed 's/$(SRCDIR)\///g' | sed -n '1!p')
 SRCDIRS	= $(foreach dir, $(DIRS), $(addprefix $(SRCDIR)/, $(dir)))
@@ -30,6 +33,7 @@ OBJDIRS = $(foreach dir, $(DIRS), $(addprefix $(OBJDIR)/, $(dir)))
 # Create a list of *.c sources in DIRS
 SRCS = $(wildcard src/*.c)
 SRCS += $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+SRCS := $(filter-out $(ENTRYPOINT), $(SRCS))
 
 # Define objects for all sources
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
@@ -46,7 +50,7 @@ all			: buildrepo $(NAME)
 
 $(NAME)		: $(OBJS)
 	$(HIDE)$(MAKE) -C $(LIBFTDIR)
-	$(HIDE)$(CC) $(CFLAGS) $(OBJS) -L./libft -lft -o $(NAME)
+	$(HIDE)$(CC) $(CFLAGS) $(ENTRYPOINT) $(OBJS) -L./libft -lft -o $(NAME)
 	@printf $(GREEN)"[$@] program created\n"$(RESET)
 	
 clean		:
@@ -67,10 +71,11 @@ print	:
 	@echo $(DIRS)
 	@echo $(SRCS)
 
-ltest	:
+utest	:
 	$(HIDE)$(MAKE) -C $(LIBFTDIR)
-	$(HIDE)$(CC) $(CFLAGS) main.c -L./libft -lft -o ltest
-	./ltest "2 6 1 90 -1 30"
+	$(HIDE)$(CC) $(CFLAGS) $(OBJS) $(UTEST) -L./libft -lft -o utest
+	@printf $(BLUE)"[$@] unit_test \n"$(RESET)
+	./utest
 
 test	: docker
 
