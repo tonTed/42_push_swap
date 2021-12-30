@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2021/12/28 12:40:13 by tonted           ###   ########.fr        #
+#    Updated: 2021/12/29 19:55:41 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFTDIR := libft
 NAME = push_swap
 
 # Decide whether the commands will be shwon or not
-VERBOSE = FALSE
+VERBOSE = TRUE
 
 ENTRYPOINT = src/push_swap.c
 UTEST = test/main.c
@@ -71,11 +71,11 @@ print	:
 	@echo $(DIRS)
 	@echo $(SRCS)
 
-utest	:
+utest	: buildrepo $(OBJS)
 	$(HIDE)$(MAKE) -C $(LIBFTDIR)
 	$(HIDE)$(CC) $(CFLAGS) $(OBJS) $(UTEST) -L./libft -lft -o utest
 	@printf $(BLUE)"[$@] unit_test \n"$(RESET)
-	./utest
+	./utest && rm -rf utest
 
 test	: docker
 
