@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2021/12/29 19:55:41 by tonted           ###   ########.fr        #
+#    Updated: 2022/01/18 15:08:29 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
 # Name the compiler & flags
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 CFLAGS += -iquote$(INCDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
@@ -79,6 +79,7 @@ utest	: buildrepo $(OBJS)
 
 test	: docker
 
+# VALGRIND = -
 VALGRIND = -valgrind --leak-check=full -q
 _test	:  re
 	@printf $(BLUE)"\n>>>> "$(RESET)

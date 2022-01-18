@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2021/12/27 22:35:45 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/18 14:46:45 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ typedef struct s_tabint
 typedef struct s_stack
 {
 	t_tabint	tab;
-	size_t		*last_i;
+	ssize_t		*last_i;
 	char		name;
 }				t_stack;
 
+/* manage input */
+char		**create_tabstr(char **argv, int argc);
 t_tabint	create_tabint(char **tabstr);
+t_stack		create_stack(t_tabint tab, bool empty, char name);
+
 void		freeexit(char ***tabstr, int **tab, char *message);
 
 /* operations functions */
