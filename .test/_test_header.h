@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_header.h                                      :+:      :+:    :+:   */
+/*   _test_header.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:43:45 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/19 11:25:22 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/19 12:26:02 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TEST_HEADER_H
 
 # include <stdio.h>
-# include "colors.h"
+# include "_colors.h"
 
 // include header of project
 # include "push_swap.h"

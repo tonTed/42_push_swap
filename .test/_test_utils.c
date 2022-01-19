@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_utils.c                                       :+:      :+:    :+:   */
+/*   _test_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 11:21:08 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/19 11:25:43 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/19 12:26:09 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_header.h"
+#include "_test_header.h"
 
 void	put_errors_func(size_t errors, size_t tests, t_test test)
 {
