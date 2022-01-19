@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/01/18 15:08:29 by tonted           ###   ########.fr        #
+#    Updated: 2022/01/18 20:35:06 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ NAME = push_swap
 VERBOSE = TRUE
 
 ENTRYPOINT = src/push_swap.c
-UTEST = test/main.c
+
+# Unit Test management
+UTEST = .test/test_main.c
+USRCS = $(wildcard .test/*.c)
 
 # Create the list of directories
 DIRS = $(shell find $(SRCDIR) -type d | sed 's/$(SRCDIR)\///g' | sed -n '1!p')
@@ -73,7 +76,7 @@ print	:
 
 utest	: buildrepo $(OBJS)
 	$(HIDE)$(MAKE) -C $(LIBFTDIR)
-	$(HIDE)$(CC) $(CFLAGS) $(OBJS) $(UTEST) -L./libft -lft -o utest
+	$(HIDE)$(CC) $(CFLAGS) $(OBJS) $(USRCS) -L./libft -lft -o utest
 	@printf $(BLUE)"[$@] unit_test \n"$(RESET)
 	./utest && rm -rf utest
 

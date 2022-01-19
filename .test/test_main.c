@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:36:17 by tonted            #+#    #+#             */
-/*   Updated: 2021/12/29 19:54:53 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/18 20:35:50 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_push_swap.h"
+#include "test_header.h"
 
 void	test_sample(t_test test)
 {
@@ -35,22 +35,11 @@ void	test_sample(t_test test)
 		printf(GRN " PASSED" RESET);
 }
 
-t_test	new_t_test()
-{
-	t_test	test;
-
-	test.tests = malloc(sizeof(size_t));
-	*test.tests = 0;
-	test.errors = malloc(sizeof(size_t));
-	*test.errors = 0;
-	return (test);
-}
-
 int main()
 {
 	t_test	test;
+	(void) test;
 
-	test = new_t_test();
 	return 0;
 }
 
