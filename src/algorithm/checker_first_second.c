@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker_first_second.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/19 16:03:43 by tblanco          ###   ########.fr       */
+/*   Created: 2022/01/19 16:09:22 by tblanco           #+#    #+#             */
+/*   Updated: 2022/01/19 16:11:46 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+bool	is_first_bigger_second(int *tab, ssize_t len)
 {
-	t_tabint	tabint;
-	t_stack		stack_a;
-	t_stack		stack_b;
+	return (tab[0] > tab[len - 1]);
+}
 
-	tabint = create_tab(argv, argc);
-	stack_a = create_stack(tabint, false, 'a');
-	stack_b = create_stack(tabint, true, 'b');
-	algorithm(stack_a, stack_b);
-
-	put_stack(stack_a, stack_b);
-	// TODO improve free items
-	free(stack_a.tab.tab);
-	free(stack_a.last_i);
-	free(stack_b.tab.tab);
-	free(stack_b.last_i);
-
-	return (EXIT_SUCCESS);
+bool	is_firsts_big_second(t_stack stack_a, t_stack stack_b)
+{
+	if (is_first_bigger_second(stack_a.tab.tab, *stack_a.last_i + 1)
+		&& !(is_first_bigger_second(stack_b.tab.tab, *stack_b.last_i + 1)))
+	{
+		sswap(stack_a, stack_b);
+		return (true);
+	}
+	return (false);
 }

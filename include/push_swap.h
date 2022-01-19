@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/19 12:54:26 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/19 16:23:39 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "../libft/include/libft.h"
+
+# define DEBUG true 
 
 typedef struct s_tabint
 {
@@ -34,11 +36,20 @@ t_stack		create_stack(t_tabint tab, bool empty, char name);
 
 void		freeexit(char ***tabstr, int **tab, char *message);
 
+void		algorithm(t_stack stack_a, t_stack stack_b);
+void		put_stack(t_stack stack_a, t_stack stack_b);
+
+/* checkers */
+bool	is_bigger_tab(int *tab, ssize_t len, int num);
+bool	is_smaller_tab(int *tab, ssize_t len, int num);
+bool	is_firsts_big_lasts(t_stack stack_a, t_stack stack_b);
+bool	is_firsts_big_second(t_stack stack_a, t_stack stack_b);
+bool	is_firsts_small_lasts(t_stack sa, t_stack sb);
+
 /* operations functions */
 void		print_op(char *op, char stack);
 void		move_down(t_stack stack);
 void		move_up(t_stack stack);
-void		move_down(t_stack stack);
 void		swap(t_stack stack);
 void		sswap(t_stack stack_1, t_stack stack_2);
 void		push(t_stack src, t_stack dst);

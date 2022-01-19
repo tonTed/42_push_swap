@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/19 16:03:43 by tblanco          ###   ########.fr       */
+/*   Created: 2022/01/19 16:08:11 by tblanco           #+#    #+#             */
+/*   Updated: 2022/01/19 16:08:22 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+// check if is the bigger in the tab
+bool	is_bigger_tab(int *tab, ssize_t len, int num)
 {
-	t_tabint	tabint;
-	t_stack		stack_a;
-	t_stack		stack_b;
+	ssize_t	i;
 
-	tabint = create_tab(argv, argc);
-	stack_a = create_stack(tabint, false, 'a');
-	stack_b = create_stack(tabint, true, 'b');
-	algorithm(stack_a, stack_b);
+	i = 0;
+	while (i < len)
+		if (tab[i++] > num)
+			return (false);
+	return (true);
+}
 
-	put_stack(stack_a, stack_b);
-	// TODO improve free items
-	free(stack_a.tab.tab);
-	free(stack_a.last_i);
-	free(stack_b.tab.tab);
-	free(stack_b.last_i);
+// check if is the bigger in the tab
+bool	is_smaller_tab(int *tab, ssize_t len, int num)
+{
+	ssize_t	i;
 
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (i < len)
+		if (tab[i++] < num)
+			return (false);
+	return (true);
 }
