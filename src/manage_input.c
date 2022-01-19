@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   manage_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:48:48 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/18 15:21:59 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/19 12:06:24 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_tabint	create_tabint(char **tabstr)
+static t_tabint	create_tabint(char **tabstr)
 {
 	t_tabint	tab;
 	size_t		i;
@@ -35,13 +35,13 @@ t_tabint	create_tabint(char **tabstr)
 	return (tab);
 }
 
-char	**create_tabstr(char **argv, int argc)
+static char	**create_tabstr(char **argv, int argc)
 {
 	char	**tab;
 	int		i;
 
 	if (argc < 2)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	else if (argc == 2)
 		tab = ft_split(argv[1], SPACE);
 	else
@@ -57,7 +57,17 @@ char	**create_tabstr(char **argv, int argc)
 	}
 	if (!ft_isnumberstab(tab))
 		freeexit(&tab, NULL, "Error\n");
+	if (!tab)
+		exit(EXIT_FAILURE);
 	return (tab);
+}
+
+t_tabint	create_tab(char **argv, int argc)
+{
+	char	**tabstr;
+
+	tabstr = create_tabstr(argv, argc);
+	return (create_tabint(tabstr));
 }
 
 t_stack	create_stack(t_tabint tab, bool empty, char name)
