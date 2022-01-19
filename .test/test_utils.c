@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_push_swap.h                                   :+:      :+:    :+:   */
+/*   test_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 20:26:37 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/19 11:34:03 by tblanco          ###   ########.fr       */
+/*   Created: 2022/01/19 11:21:08 by tblanco           #+#    #+#             */
+/*   Updated: 2022/01/19 11:25:43 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_PUSH_SWAP_H
-# define TEST_PUSH_SWAP_H
+#include "test_header.h"
 
-# include "test_header.h"
-
-void	test_swap(t_test test);
-void	test_create_tabint(t_test test);
-
-
-# endif
+void	put_errors_func(size_t errors, size_t tests, t_test test)
+{
+	*test.errors += errors;
+	*test.tests += tests;
+	if (errors)
+		printf(RED "\nErrors: %zu/%zu\n" RESET,errors, tests);
+	else
+		printf(GRN " PASSED" RESET);
+}

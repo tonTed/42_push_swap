@@ -3,43 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 13:36:17 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/18 20:35:50 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/19 12:11:41 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_header.h"
+#include "test_push_swap.h"
 
-void	test_sample(t_test test)
+t_test	config()
 {
-	size_t errors = 0;
-	size_t tests = 0;
+	t_test	test;
 
-	printf(MAG "\n----- NAME:" RESET);
-	// 1
-	// (*test)++;
-	// returned = ft_strndup(NULL, 3);
-	// expected = "";
-	// if (strcmp(expected, returned))
-	// 	{printf(YEL "\n1_\texpected: %s\t - returned: %s" RESET, expected, returned); errors++;}
-	// free(returned);
+	test.errors = (size_t*)malloc(sizeof(size_t));
+	test.tests = (size_t*)malloc(sizeof(size_t));
+	return (test);
 
-	//END
-	*test.errors += errors;
-	*test.tests += tests;
+}
+
+void	put_errors_main(size_t errors, size_t tests)
+{
 	if (errors)
-		printf(RED "\nErrors: %zu/%zu\n" RESET,errors, tests);
+		printf(BRED "\n\nErrors: %zu/%zu\n" RESET,errors, tests);
 	else
-		printf(GRN " PASSED" RESET);
+		printf(BGRN "\n\nPASSED\n" RESET);
 }
 
 int main()
 {
 	t_test	test;
-	(void) test;
 
-	return 0;
+	test = config();
+	printf(BBLU "\n----- UNIT TESTS FOR PUSH_SWAP:" RESET);
+
+	test_swap(test);
+	
+	put_errors_main(*test.errors, *test.tests);
+	return (0);
 }
 
