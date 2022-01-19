@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/01/18 20:35:06 by tonted           ###   ########.fr        #
+#    Updated: 2022/01/18 21:08:10 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,20 +85,20 @@ test	: docker
 # VALGRIND = -
 VALGRIND = -valgrind --leak-check=full -q
 _test	:  re
-	@printf $(BLUE)"\n>>>> "$(RESET)
-	$(VALGRIND) ./push_swap
-	@printf $(BLUE)"\n>>>> "$(RESET)
-	$(VALGRIND) ./push_swap "0"
-	@printf $(BLUE)"\n>>>> "$(RESET)
-	$(VALGRIND) ./push_swap a
-	@printf $(BLUE)"\n>>>> "$(RESET)
-	$(VALGRIND) ./push_swap "-1 0 5 69"
-	@printf $(BLUE)"\n>>>> "$(RESET)
-	$(VALGRIND) ./push_swap 5 -003 -2147483649
-	@printf $(BLUE)"\n>>>> "$(RESET)
-	$(VALGRIND) ./push_swap "-1 g 5 69"
-	@printf $(BLUE)"\n>>>> "$(RESET)
-	$(VALGRIND) ./push_swap 5 7 3 90 3
+# @printf $(BLUE)"\n>>>> "$(RESET)
+# $(VALGRIND) ./push_swap
+# @printf $(BLUE)"\n>>>> "$(RESET)
+# $(VALGRIND) ./push_swap "0"
+# @printf $(BLUE)"\n>>>> "$(RESET)
+# $(VALGRIND) ./push_swap a
+# @printf $(BLUE)"\n>>>> "$(RESET)
+# $(VALGRIND) ./push_swap "-1 0 5 69"
+# @printf $(BLUE)"\n>>>> "$(RESET)
+# $(VALGRIND) ./push_swap 5 -003 -2147483649
+# @printf $(BLUE)"\n>>>> "$(RESET)
+# $(VALGRIND) ./push_swap "-1 g 5 69"
+# @printf $(BLUE)"\n>>>> "$(RESET)
+# $(VALGRIND) ./push_swap 5 7 3 90 3
 	@printf $(BLUE)"\n>>>> "$(RESET)
 	$(VALGRIND) ./push_swap 5 7 90 3
 

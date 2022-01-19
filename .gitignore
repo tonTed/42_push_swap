@@ -1,2 +1,4 @@
 push_swap
 obj/
+.vscode/
+push_swap.dSYM/
