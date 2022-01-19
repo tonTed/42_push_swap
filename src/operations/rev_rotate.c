@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:56:26 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/19 12:55:00 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/19 15:23:49 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	rev_rrotate(t_stack stack_1, t_stack stack_2)
 	p_rev_rotate(stack_1);
 	p_rev_rotate(stack_2);
 	ft_putendl_fd("rrr", 1);
+	put_stack(stack_1, stack_2);
 }

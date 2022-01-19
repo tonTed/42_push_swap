@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 21:00:23 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/19 12:43:52 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/19 15:16:13 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	push(t_stack src, t_stack dst)
 		*src.last_i -= 1;
 		move_up(src);
 		print_op("p", dst.name);
+		put_stack(src, dst);
 	}
 }
