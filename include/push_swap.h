@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/18 14:46:45 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/19 12:02:55 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ typedef struct s_stack
 }				t_stack;
 
 /* manage input */
-char		**create_tabstr(char **argv, int argc);
-t_tabint	create_tabint(char **tabstr);
+t_tabint	create_tab(char **argv, int argc);
 t_stack		create_stack(t_tabint tab, bool empty, char name);
 
 void		freeexit(char ***tabstr, int **tab, char *message);
