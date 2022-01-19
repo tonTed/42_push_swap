@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:59:37 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/18 21:02:12 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/19 12:56:06 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// swap the first 2 elements at the top of stack a. Do nothing if there is only
+// one or no elements).
 void	swap(t_stack stack)
 {
 	if ((*stack.last_i >= 1))
@@ -21,6 +23,8 @@ void	swap(t_stack stack)
 	}
 }
 
+// swap the first 2 elements at the top of stack a. Do nothing if there is only
+// one or no elements).
 void	sswap(t_stack stack_1, t_stack stack_2)
 {
 	ft_swap(&stack_1.tab.tab[0], &stack_1.tab.tab[1]);

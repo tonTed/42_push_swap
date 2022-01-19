@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
+#    By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/01/18 21:08:10 by tonted           ###   ########.fr        #
+#    Updated: 2022/01/19 12:17:03 by tblanco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ VERBOSE = TRUE
 ENTRYPOINT = src/push_swap.c
 
 # Unit Test management
-UTEST = .test/test_main.c
+UTEST = .test/_test_main.c
 USRCS = $(wildcard .test/*.c)
 
 # Create the list of directories

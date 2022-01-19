@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/19 12:02:55 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/19 12:54:26 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void		sswap(t_stack stack_1, t_stack stack_2);
 void		push(t_stack src, t_stack dst);
 void		rotate(t_stack stack);
 void		rrotate(t_stack stack_1, t_stack stack_2);
+void		rev_rotate(t_stack stack);
+void		rev_rrotate(t_stack stack_1, t_stack stack_2);
 
 # include <stdio.h>
 #endif

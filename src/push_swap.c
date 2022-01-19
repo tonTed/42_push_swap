@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/19 12:04:01 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/19 12:53:36 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,18 @@ int	main(int argc, char **argv)
 
 	ft_puttabint_fd(stack_a.tab.tab, *stack_a.last_i + 1, 1);
 	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);
+	rev_rotate(stack_a);
+	ft_puttabint_fd(stack_a.tab.tab, *stack_a.last_i + 1, 1);
+	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);	
 	push(stack_a, stack_b);
 	ft_puttabint_fd(stack_a.tab.tab, *stack_a.last_i + 1, 1);
-	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);
+	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);	
 	push(stack_a, stack_b);
 	ft_puttabint_fd(stack_a.tab.tab, *stack_a.last_i + 1, 1);
-	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);
-	push(stack_a, stack_b);
+	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);	
+	rev_rrotate(stack_b, stack_a);
 	ft_puttabint_fd(stack_a.tab.tab, *stack_a.last_i + 1, 1);
-	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);
-	push(stack_a, stack_b);
-	ft_puttabint_fd(stack_a.tab.tab, *stack_a.last_i + 1, 1);
-	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);
-	
+	ft_puttabint_fd(stack_b.tab.tab, *stack_b.last_i + 1, 1);	
 
 	// TODO improve free items
 	free(stack_a.tab.tab);
