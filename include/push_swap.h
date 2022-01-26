@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/25 20:44:23 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/26 09:21:11 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void		freestack(t_stack sa, t_stack sb);
 void		algorithm(t_stack stack_a, t_stack stack_b);
 void		put_stack(t_stack stack_a, t_stack stack_b);
 
-/* checkers */
-
 /* operations functions */
 void		print_op(char *op, char stack);
 void		move_down(t_stack stack);
@@ -56,6 +54,7 @@ void		rev_rotate(t_stack stack);
 void		rev_rrotate(t_stack stack_1, t_stack stack_2);
 
 void		algo_3(t_stack sa);
+void		algo_5(t_stack sa, t_stack sb);
 
 # include <stdio.h>
 #endif
