@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/24 13:26:38 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/25 20:44:23 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/include/libft.h"
 
-# define DEBUG true 
+# define DEBUG 1 
 
 typedef struct s_tabint
 {
@@ -33,22 +33,15 @@ typedef struct s_stack
 /* manage input */
 t_tabint	create_tab(char **argv, int argc);
 t_stack		create_stack(t_tabint tab, bool empty, char name);
+int			*tab_convert(int *tab, size_t len);
 
 void		freeexit(char ***tabstr, int **tab, char *message);
+void		freestack(t_stack sa, t_stack sb);
 
 void		algorithm(t_stack stack_a, t_stack stack_b);
 void		put_stack(t_stack stack_a, t_stack stack_b);
 
 /* checkers */
-bool	is_bigger_tab(int *tab, ssize_t len, int num);
-bool	is_smaller_tab(int *tab, ssize_t len, int num);
-bool	is_first_big_last(int *tab, ssize_t len);
-bool	is_firsts_big_lasts(t_stack stack_a, t_stack stack_b);
-bool	is_first_big_second(int *tab, ssize_t len);
-bool	is_firsts_big_second(t_stack stack_a, t_stack stack_b);
-bool	is_first_small_last(int *tab, ssize_t len);
-bool	is_firsts_small_lasts(t_stack sa, t_stack sb);
-
 
 /* operations functions */
 void		print_op(char *op, char stack);
@@ -63,7 +56,6 @@ void		rev_rotate(t_stack stack);
 void		rev_rrotate(t_stack stack_1, t_stack stack_2);
 
 void		algo_3(t_stack sa);
-void		algo_5(t_stack sa,t_stack sb);
 
 # include <stdio.h>
 #endif

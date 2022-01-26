@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:48:48 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/24 12:13:19 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/25 20:16:29 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static t_tabint	create_tabint(char **tabstr)
 	}
 	if (ft_isduplicates(tab.tab, tab.size))
 		freeexit(&tabstr, &tab.tab, "Error\n");
-	// ft_reversetab(&tab.tab, tab.size);
 	if (ft_issorted(tab.tab, tab.size))
 		freeexit(&tabstr, &tab.tab, "");
 	ft_freetabstr(&tabstr);
+	tab.tab = tab_convert(tab.tab, tab.size);
 	return (tab);
 }
 

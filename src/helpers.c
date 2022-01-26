@@ -6,13 +6,13 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 00:59:00 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/24 12:44:48 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/25 20:42:37 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		*tab_zero(size_t len)
+int	*tab_zero(size_t len)
 {
 	int		*tab;
 	size_t	i;
@@ -24,27 +24,24 @@ int		*tab_zero(size_t len)
 	return (tab);
 }
 
-// void	tab_convert(int *tab, size_t len)
-// {
-// 	size_t	*tabnew;
-// 	size_t	*indexing;
-// 	size_t	i_new;
-// 	size_t	i_big;
-// 	size_t	i;
+int	*tab_convert(int *tab, size_t len)
+{
+	size_t	i_tab;
+	size_t	i_new;
+	size_t	count;
+	int		*tabnew;
 
-// 	i_new = 0;
-// 	i_big = 0;
-// 	tabnew = (int *)malloc(sizeof(size_t) * len);
-// 	indexing = tab_zero(len);
-// 	while (i_new < len)
-// 	{
-// 		i = 0;
-// 		while (i < len)
-// 		{
-// 			if (tab[i] > tab[i_big])
-// 				i_big = i;
-// 			i++;
-// 		}
-// 		i_new++;
-// 	}
-// }
+	i_new = 0;
+	tabnew = (int *)malloc(sizeof(int) * len);
+	while (i_new < len)
+	{
+		i_tab = 0;
+		count = 0;
+		while (i_tab < len)
+			if (tab[i_new] > tab[i_tab++])
+				count++;
+		tabnew[i_new++] = count;
+	}
+	free(tab);
+	return (tabnew);
+}
