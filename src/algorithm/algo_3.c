@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   algo_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:15:07 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/26 09:20:40 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/26 15:20:04 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"\
+#include "push_swap.h"
 
 // check if is the bigger in the tab
 static bool	is_bigger_tab(t_stack stack, int num)

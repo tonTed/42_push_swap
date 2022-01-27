@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/26 08:58:22 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/26 18:50:22 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	manage_algo(t_stack sa, t_stack sb)
 		algo_3(sa);
 	else if (*sa.last_i < 5)
 		algo_5(sa, sb);
+	else
+		algo_big(sa, sb);
 }
 
 int	main(int argc, char **argv)

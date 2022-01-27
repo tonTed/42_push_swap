@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:58:29 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/19 15:15:57 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/26 18:53:15 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_op(char *op, char stack)
 
 void	move_down(t_stack stack)
 {
-	size_t	i;
+	ssize_t	i;
 
 	i = *stack.last_i;
 	while (i > 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:48:48 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/25 20:16:29 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/26 18:50:08 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_stack	create_stack(t_tabint tab, bool empty, char name)
 	if (empty)
 	{
 		tabint.size = tab.size;
-		tabint.tab = (int *)malloc(sizeof(tabint.size));
+		tabint.tab = (int *)malloc(sizeof(int) * tabint.size);
 		stack.tab = tabint;
 		*stack.last_i = -1;
 	}
