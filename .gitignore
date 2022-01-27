@@ -3,3 +3,5 @@ obj/
 .vscode/
 push_swap.dSYM/
 utest.dSYM/
+push_swap_visualizer/
+pyviz.py

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:56:26 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/25 19:10:08 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/27 13:33:34 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 static void	p_rev_rotate(t_stack stack)
 {
 	int	tmp;
-
+	
 	tmp = stack.tab.tab[*stack.last_i];
-	move_down(stack);
+	if (*stack.last_i < 2)
+		stack.tab.tab[*stack.last_i] = stack.tab.tab[0];
+	else
+		move_down(stack);
 	stack.tab.tab[0] = tmp;
 }
 
@@ -25,7 +28,7 @@ static void	p_rev_rotate(t_stack stack)
 // one.
 void	rev_rotate(t_stack stack)
 {
-	if (!(*stack.last_i < 2))
+	if (!(*stack.last_i < 1))
 	{
 		p_rev_rotate(stack);
 		print_op("rr", stack.name);

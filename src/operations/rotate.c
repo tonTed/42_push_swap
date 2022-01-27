@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:56:26 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/25 19:10:03 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/27 13:33:41 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static void	p_rotate(t_stack stack)
 	int	tmp;
 
 	tmp = stack.tab.tab[0];
-	move_up(stack);
+	if (*stack.last_i < 2)
+		stack.tab.tab[0] = stack.tab.tab[*stack.last_i];
+	else
+		move_up(stack);
 	stack.tab.tab[*stack.last_i] = tmp;
 }
 
@@ -25,7 +28,7 @@ static void	p_rotate(t_stack stack)
 // one.
 void	rotate(t_stack stack)
 {
-	if (!(*stack.last_i < 2))
+	if (!(*stack.last_i < 1))
 	{
 		p_rotate(stack);
 		print_op("r", stack.name);
