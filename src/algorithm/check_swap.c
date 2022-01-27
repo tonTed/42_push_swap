@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:47:41 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/27 14:23:49 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/27 16:06:11 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ bool	to_swap(t_stack sa, t_stack sb)
 		swap(sb);
 	else
 		return (false);
+	// put_stack(sa, sb);
 	return (true);
 }

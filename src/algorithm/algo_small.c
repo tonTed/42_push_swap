@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:15:07 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/26 21:49:18 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/27 16:59:04 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	algo_5(t_stack sa, t_stack sb)
 		push(sb, sa);
 		return ;
 	}
-	else if (sa.tab.tab[0] == 0 || sa.tab.tab[0] == 1)
+	else if (is_smaller_tab(sa, sa.tab.tab[0]))
 		push(sa, sb);
 	// TODO condition for rev_rotate
 	else
 		rotate(sa);
-	if (*sa.last_i == 4 && ft_issorted(sa.tab.tab, sa.tab.size))
+	if (*sa.last_i == 4 && ft_issorted(sa.tab.tab, 5))
 		return ;
 	else
 		algo_5(sa, sb);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:50:10 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/27 12:33:06 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/27 15:34:00 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ size_t	where_is_bigger(t_stack stack)
 	i = 0;
 	ret = 0;
 	max = stack.tab.tab[i];
-	while (i < *stack.last_i - 1)
+	while (i <= *stack.last_i)
 	{
-		if (stack.tab.tab[++i] > max)
+		if (stack.tab.tab[i] > max)
 		{
 			max = stack.tab.tab[i];
 			ret = i;
 		}
+		i++;
 	}
 	return (ret);
 }
