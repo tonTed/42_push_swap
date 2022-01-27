@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/26 21:50:47 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/26 22:37:12 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		algo_5(t_stack sa, t_stack sb);
 void		algo_big(t_stack sa, t_stack sb);
 bool		to_swap(t_stack sa, t_stack sb);
 size_t		get_med(t_stack stack);
+size_t		where_is_bigger(t_stack stack);
 
 /* operations functions */
 void		print_op(char *op, char stack);
