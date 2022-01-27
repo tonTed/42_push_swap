@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/26 16:01:34 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/26 21:50:47 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void		freestack(t_stack sa, t_stack sb);
 void		algo_3(t_stack sa);
 void		algo_5(t_stack sa, t_stack sb);
 void		algo_big(t_stack sa, t_stack sb);
+bool		to_swap(t_stack sa, t_stack sb);
+size_t		get_med(t_stack stack);
 
 /* operations functions */
 void		print_op(char *op, char stack);
