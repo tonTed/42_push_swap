@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/26 22:37:12 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/28 11:50:41 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,34 @@ typedef struct s_stack
 	char		name;
 }				t_stack;
 
+typedef struct s_stacks
+{
+	t_stack		*sa;
+	t_stack		*sb;
+	int			*big_sort;
+	
+}				t_stacks;
+
+
 /* manage input */
 t_tabint	create_tab(char **argv, int argc);
 t_stack		create_stack(t_tabint tab, bool empty, char name);
 int			*tab_convert(int *tab, size_t len);
+t_stacks	create_stacks(t_stack *sa, t_stack *sb);
 
 /* free functions */
 void		freeexit(char ***tabstr, int **tab, char *message);
-void		freestack(t_stack sa, t_stack sb);
+void		freestack(t_stacks stacks);
 
 /* algorithm functions*/
 void		algo_3(t_stack sa);
-void		algo_5(t_stack sa, t_stack sb);
-void		algo_big(t_stack sa, t_stack sb);
+void		algo_5(t_stacks stacks);
+void		algo_big(t_stacks stacks);
 bool		to_swap(t_stack sa, t_stack sb);
 size_t		get_med(t_stack stack);
 size_t		where_is_bigger(t_stack stack);
+void		push_next(t_stack src, t_stack dst);
+size_t		get_smaller(t_stack stack);
 
 /* operations functions */
 void		print_op(char *op, char stack);
