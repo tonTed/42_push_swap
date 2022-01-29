@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_next.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:15:29 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/28 10:53:51 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/29 11:58:16 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	rev_rotate_push(t_stack src, t_stack dst, int to_push)
 	push(src, dst);
 }
 
-
-void	push_next(t_stack src, t_stack dst)
+void	push_next_bigger(t_stack src, t_stack dst)
 {
 	ssize_t	i_bigger;
 
@@ -46,4 +45,17 @@ void	push_next(t_stack src, t_stack dst)
 		else
 			rotate_push(src, dst, src.tab.tab[i_bigger]);
 	}
+}
+
+void	push_next_half(t_stack src, t_stack dst, int med)
+{
+	ssize_t	i_next;
+
+	i_next = is_number(src, med);
+	if (i_next == 0)
+		push(src, dst);
+	else if (i_next < (*src.last_i) / 2)
+		rotate_push(src, dst, src.tab.tab[i_next]);
+	else
+		rev_rotate_push(src, dst, src.tab.tab[i_next]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/28 11:50:41 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/29 11:16:46 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,16 @@ void		freestack(t_stacks stacks);
 void		algo_3(t_stack sa);
 void		algo_5(t_stacks stacks);
 void		algo_big(t_stacks stacks);
-bool		to_swap(t_stack sa, t_stack sb);
-size_t		get_med(t_stack stack);
+int			get_smaller(t_stack stack);
+int			get_med(t_stack stack);
+bool		to_swap(t_stacks stacks);
+
+
 size_t		where_is_bigger(t_stack stack);
 void		push_next(t_stack src, t_stack dst);
-size_t		get_smaller(t_stack stack);
+ssize_t		is_number(t_stack stack, int nb);
+void		push_next_bigger(t_stack src, t_stack dst);
+void		push_next_half(t_stack src, t_stack dst, int med);
 
 /* operations functions */
 void		print_op(char *op, char stack);
@@ -72,7 +77,7 @@ void		rev_rotate(t_stack stack);
 void		rev_rrotate(t_stack stack_1, t_stack stack_2);
 
 /* DEBUG functions */
-void		put_stack(t_stack stack_a, t_stack stack_b);
+void		put_stack(t_stacks stacks);
 
 # include <stdio.h>
 #endif
