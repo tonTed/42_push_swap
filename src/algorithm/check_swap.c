@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:47:41 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/29 11:03:38 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/29 21:47:19 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 // TODO refactor hard_code name
 static bool	one_mov(t_stack stack, char *mov)
 {
-	size_t i_s;
-	size_t i_b;
-	
+	size_t	i_s;
+	size_t	i_b;
+
 	i_s = 0;
 	if (!ft_strncmp(mov, "ss", 2))
 		i_b = 1;
@@ -36,21 +36,19 @@ static bool	one_mov(t_stack stack, char *mov)
 	return (false);
 }
 
-static bool	two_mov(t_stacks stacks, char *mov)
+static bool	two_mov(t_stack s1, t_stack s2, char *mov)
 {
-	if (one_mov(*stacks.sa, mov) && one_mov(*stacks.sb, mov))
+	if (one_mov(s1, mov) && one_mov(s2, mov))
 		return (true);
 	return (false);
 }
 
-bool	to_swap(t_stacks stacks)
+bool	to_swap(t_stack s1, t_stack s2)
 {
 	while (1)
 	{
-		if (two_mov(stacks, "ss"))
-			sswap(*stacks.sa, *stacks.sb);
-		else if (two_mov(stacks, "rrr"))
-			rev_rrotate(*stacks.sa, *stacks.sb);
+		if (two_mov(s1, s2, "ss"))
+			sswap(s1, s2);
 		else
 			return (false);
 	}

@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/29 11:16:46 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/29 20:51:01 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,15 @@ void		algo_5(t_stacks stacks);
 void		algo_big(t_stacks stacks);
 int			get_smaller(t_stack stack);
 int			get_med(t_stack stack);
-bool		to_swap(t_stacks stacks);
+bool		to_swap(t_stack s1, t_stack s2);
 
 
 size_t		where_is_bigger(t_stack stack);
-void		push_next(t_stack src, t_stack dst);
-ssize_t		is_number(t_stack stack, int nb);
-void		push_next_bigger(t_stack src, t_stack dst);
-void		push_next_half(t_stack src, t_stack dst, int med);
+ssize_t		is_numbers(t_stack stack, int nb);
+bool		is_number(t_stack stack, int nb);
+void		sort_to_a(t_stack src, t_stack dst);
+void		push_next(t_stack src, t_stack dst, int med);
+void		r_push_next(t_stack src, t_stack dst, int med);
 
 /* operations functions */
 void		print_op(char *op, char stack);

@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/29 11:29:46 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/29 21:45:54 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,11 @@ int	main(int argc, char **argv)
 	t_stack		sb;
 	t_stacks	stacks;
 
-	// printf("['%s']\n", argv[1]);
 	tabint = create_tab(argv, argc);
 	sa = create_stack(tabint, false, 'a');
 	sb = create_stack(tabint, true, 'b');
 	stacks = create_stacks(&sa, &sb);
-	// sleep(5);
-	// put_stack(sa, sb);
 	manage_algo(stacks);
-	// put_stack(sa, sb);
 	freestack(stacks);
 	return (EXIT_SUCCESS);
 }

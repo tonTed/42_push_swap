@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:38:59 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/29 11:59:25 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/29 21:49:13 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,76 @@ sb : 2 5 4 1 8 0 6 3 9 7
 
 */
 
-void	first_push(t_stack src, t_stack dst, t_stacks stacks)
+int	split_2(t_stack src, t_stack dst)
 {
 	int		med;
-	
+
 	med = get_med(src);
-	while (is_number(src, med) != -1)
-	{
-		to_swap(stacks);
-		push_next_half(src, dst, med);
-	}
+	while (is_numbers(src, med) != -1)
+		push_next(src, dst, med);
+	return (med);
 }
 
+void	sort_a(t_stacks stacks, int med)
+{
+	if (med <= stacks.sa->tab.tab[*stacks.sa->last_i])
+		return ;
+	if (is_number(*stacks.sa, stacks.sa->tab.tab[*stacks.sa->last_i] + 1))
+	{
+		if (stacks.sa->tab.tab[0] == stacks.sa->tab.tab[*stacks.sa->last_i] + 1)
+			rotate(*stacks.sa);
+		else if (stacks.sa->tab.tab[0] > stacks.sa->tab.tab[1])
+			swap(*stacks.sa);
+		else
+			push(*stacks.sa, *stacks.sb);
+	}
+	else if (*stacks.sb->last_i != -1)
+		sort_to_a(*stacks.sb, *stacks.sa);
+	sort_a(stacks, med);
+}
 
-void	sort_b(t_stacks stacks)
+int	sort_b(t_stacks stacks)
 {
 	int		med;
-	
+
 	med = get_med(*stacks.sb);
 	if (*stacks.sb->last_i < 10)
 	{
 		while (*stacks.sb->last_i >= 0)
 		{
-			push_next_bigger(*stacks.sb, *stacks.sa);
+			sort_to_a(*stacks.sb, *stacks.sa);
 			rotate(*stacks.sa);
 		}
-		return ;
+		return (0);
 	}
 	else
-		first_push(*stacks.sb, *stacks.sa, stacks);
+		split_2(*stacks.sb, *stacks.sa);
 	sort_b(stacks);
+	return (med);
+}
+
+void	second_wave(t_stacks stacks)
+{
+	size_t	i;
+
+	i = 0;
+	if (stacks.sa->tab.tab[i] == 0)
+		return ;
+	if (stacks.sa->tab.tab[0] - 1 == stacks.sa->tab.tab[i])
+		rotate(*stacks.sa);
+	else
+		push(*stacks.sa, *stacks.sb);
+	second_wave(stacks);
 }
 
 void	algo_big(t_stacks stacks)
 {
-	first_push(*stacks.sa, *stacks.sb, stacks);
+	int	med;
+
+	med = split_2(*stacks.sa, *stacks.sb);
 	sort_b(stacks);
+	sort_a(stacks, med);
+	second_wave(stacks);
+	sort_b(stacks);
+	sort_a(stacks, *stacks.sa->last_i);
 }

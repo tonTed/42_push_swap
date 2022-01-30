@@ -6,13 +6,13 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:50:10 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/29 11:09:03 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/29 21:52:00 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		get_smaller(t_stack stack)
+int	get_smaller(t_stack stack)
 {
 	int		smaller;
 	ssize_t	i;
@@ -28,40 +28,39 @@ int		get_smaller(t_stack stack)
 	return (smaller);
 }
 
-int		get_bigger(t_stack stack)
+int	get_bigger(t_stack stack)
 {
-	int		smaller;
+	int		bigger;
 	ssize_t	i;
 
 	i = 0;
-	smaller = stack.tab.tab[i];
+	bigger = stack.tab.tab[i];
 	while (i <= *stack.last_i)
 	{
-		if (stack.tab.tab[i] > smaller)
-			smaller = stack.tab.tab[i];
+		if (stack.tab.tab[i] > bigger)
+			bigger = stack.tab.tab[i];
 		i++;
 	}
-	return (smaller);
+	return (bigger);
 }
 
-int		get_med(t_stack stack)
+int	get_med(t_stack stack)
 {
-	// printf(" >>> WTF? <<<<\n");
 	if (stack.name == 'a')
 	{
 		if (*stack.last_i % 2 == 0)
-			return (get_smaller(stack) + ((size_t)*stack.last_i / 2) - 1);
-		return (get_smaller(stack) + ((size_t)*stack.last_i / 2));
+			return (get_smaller(stack) + ((size_t)(*stack.last_i / 2)) - 1);
+		return (get_smaller(stack) + ((size_t)(*stack.last_i / 2)));
 	}
 	else
 	{
 		if (*stack.last_i % 2 == 0)
-			return (get_bigger(stack) - ((size_t)*stack.last_i / 2) - 1);
-		return (get_bigger(stack) - ((size_t)*stack.last_i / 2));
+			return (get_bigger(stack) - ((size_t)(*stack.last_i / 2)) - 1);
+		return (get_bigger(stack) - ((size_t)(*stack.last_i / 2)));
 	}
 }
 
-ssize_t	is_number(t_stack stack, int nb)
+ssize_t	is_numbers(t_stack stack, int nb)
 {
 	ssize_t	i;
 
@@ -91,23 +90,13 @@ ssize_t	is_number(t_stack stack, int nb)
 	return (-1);
 }
 
-size_t	where_is_bigger(t_stack stack)
+bool	is_number(t_stack stack, int nb)
 {
 	ssize_t	i;
-	int		max;
-	size_t	ret;
 
 	i = 0;
-	ret = 0;
-	max = stack.tab.tab[i];
 	while (i <= *stack.last_i)
-	{
-		if (stack.tab.tab[i] < max)
-		{
-			max = stack.tab.tab[i];
-			ret = i;
-		}
-		i++;
-	}
-	return (ret);
+		if (stack.tab.tab[i++] == nb)
+			return (true);
+	return (false);
 }
