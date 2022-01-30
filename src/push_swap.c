@@ -6,36 +6,32 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/29 21:45:54 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 11:15:09 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	manage_algo(t_stacks stacks)
+void	manage_algo(t_stacks s)
 {
-	if (*stacks.sa->last_i == 1)
-		swap(*stacks.sa);
-	else if (*stacks.sa->last_i == 2)
-		algo_3(*stacks.sa);
-	else if (*stacks.sa->last_i < 5)
-		algo_5(stacks);
+	if (s.a->i_end == 1)
+		swap(*s.a);
+	else if (s.a->i_end == 2)
+		algo_3(*s.a);
+	else if (s.a->i_end < 5)
+		algo_5(s);
 	else
-		algo_big(stacks);
+		algo_big(s);
 }
 
 int	main(int argc, char **argv)
 {
-	t_tabint	tabint;
-	t_stack		sa;
-	t_stack		sb;
-	t_stacks	stacks;
+	t_stacks	s;
 
-	tabint = create_tab(argv, argc);
-	sa = create_stack(tabint, false, 'a');
-	sb = create_stack(tabint, true, 'b');
-	stacks = create_stacks(&sa, &sb);
-	manage_algo(stacks);
-	freestack(stacks);
+	s = create_stacks(argv, argc);
+
+	// manage_algo(stacks);
+	put_stack(s);
+	freestack(s);
 	return (EXIT_SUCCESS);
 }

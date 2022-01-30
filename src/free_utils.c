@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 18:51:31 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/28 09:50:14 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/30 11:02:50 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ void	freeexit(char ***tabstr, int **tab, char *message)
 	exit(EXIT_SUCCESS);
 }
 
-void	freestack(t_stacks stacks)
+void	freestack(t_stacks s)
 {
-	free(stacks.sa->tab.tab);
-	free(stacks.sa->last_i);
-	free(stacks.sb->tab.tab);
-	free(stacks.sb->last_i);
-	free(stacks.big_sort);
+	free(s.a.tab);
+	free(s.b.tab);
 }

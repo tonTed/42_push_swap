@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/29 20:51:01 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 11:12:21 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,23 @@
 
 # define DEBUG 1 
 
-typedef struct s_tabint
-{
-	int		*tab;
-	size_t	size;
-}				t_tabint;
-
 typedef struct s_stack
 {
-	t_tabint	tab;
-	ssize_t		*last_i;
-	char		name;
+	int		*tab;
+	ssize_t	i_end;
+	char	name;
 }				t_stack;
 
 typedef struct s_stacks
 {
-	t_stack		*sa;
-	t_stack		*sb;
-	int			*big_sort;
-	
+	t_stack		*a;
+	t_stack		*b;
 }				t_stacks;
 
 
 /* manage input */
-t_tabint	create_tab(char **argv, int argc);
-t_stack		create_stack(t_tabint tab, bool empty, char name);
+t_stacks	create_stacks(char **argv, int argc);
 int			*tab_convert(int *tab, size_t len);
-t_stacks	create_stacks(t_stack *sa, t_stack *sb);
 
 /* free functions */
 void		freeexit(char ***tabstr, int **tab, char *message);

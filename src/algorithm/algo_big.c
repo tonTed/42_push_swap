@@ -6,13 +6,14 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:38:59 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/30 10:24:25 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 11:04:29 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	algo_big(t_stacks stacks)
+void	algo_big(t_stacks s)
 {
+	(void)s;
 	return ;
 }
