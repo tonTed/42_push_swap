@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:56:26 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/27 13:33:41 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/30 11:27:18 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ static void	p_rotate(t_stack stack)
 {
 	int	tmp;
 
-	tmp = stack.tab.tab[0];
-	if (*stack.last_i < 2)
-		stack.tab.tab[0] = stack.tab.tab[*stack.last_i];
+	tmp = stack.tab[0];
+	if (stack.i_end < 2)
+		stack.tab[0] = stack.tab[stack.i_end];
 	else
 		move_up(stack);
-	stack.tab.tab[*stack.last_i] = tmp;
+	stack.tab[stack.i_end] = tmp;
 }
 
 // shift up all elements of stack a by 1. The first element becomes the last
 // one.
 void	rotate(t_stack stack)
 {
-	if (!(*stack.last_i < 1))
+	if (!(stack.i_end < 1))
 	{
 		p_rotate(stack);
 		print_op("r", stack.name);

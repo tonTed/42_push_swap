@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/30 11:12:21 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 11:40:54 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		move_down(t_stack stack);
 void		move_up(t_stack stack);
 void		swap(t_stack stack);
 void		sswap(t_stack stack_1, t_stack stack_2);
-void		push(t_stack src, t_stack dst);
+void		push(t_stack *src, t_stack *dst);
 void		rotate(t_stack stack);
 void		rrotate(t_stack stack_1, t_stack stack_2);
 void		rev_rotate(t_stack stack);

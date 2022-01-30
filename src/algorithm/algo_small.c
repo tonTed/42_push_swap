@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:15:07 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/28 10:15:26 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/30 11:40:33 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static bool	is_bigger_tab(t_stack stack, int num)
 	size_t	len;
 
 	i = 0;
-	len = *stack.last_i + 1;
+	len = stack.i_end + 1;
 	while (i < len)
-		if (stack.tab.tab[i++] > num)
+		if (stack.tab[i++] > num)
 			return (false);
 	return (true);
 }
@@ -32,41 +32,42 @@ static bool	is_smaller_tab(t_stack stack, int num)
 	size_t	i;
 	size_t	len;
 
-	len = *stack.last_i + 1;
+	len = stack.i_end + 1;
 	i = 0;
 	while (i < len)
-		if (stack.tab.tab[i++] < num)
+		if (stack.tab[i++] < num)
 			return (false);
 	return (true);
 }
 
-void	algo_3(t_stack sa)
+void	algo_3(t_stack a)
 {
-	if (is_bigger_tab(sa, sa.tab.tab[0]))
-		rotate(sa);
-	else if (is_bigger_tab(sa, sa.tab.tab[1]))
-		rev_rotate(sa);
-	if (is_smaller_tab(sa, sa.tab.tab[1]))
-		swap(sa);
+	if (is_bigger_tab(a, a.tab[0]))
+		rotate(a);
+	else if (is_bigger_tab(a, a.tab[1]))
+		rev_rotate(a);
+	if (is_smaller_tab(a, a.tab[1]))
+		swap(a);
 }
 
 void	algo_5(t_stacks stacks)
 {
-	if (*stacks.sa->last_i == 2)
+	if (stacks.a->i_end == 2)
 	{
-		algo_3(*stacks.sa);
-		if (stacks.sb->tab.tab[0] < stacks.sb->tab.tab[1])
-			swap(*stacks.sb);
-		push(*stacks.sb, *stacks.sa);
-		push(*stacks.sb, *stacks.sa);
+		algo_3(*stacks.a);
+		if (stacks.b->tab[0] < stacks.b->tab[1])
+			swap(*stacks.b);
+		push(stacks.b, stacks.a);
+		push(stacks.b, stacks.a);
 		return ;
 	}
-	else if (is_smaller_tab(*stacks.sa, stacks.sa->tab.tab[0]))
-		push(*stacks.sa, *stacks.sb);
+	else if (is_smaller_tab(*stacks.a, stacks.a->tab[0]))
+		push(stacks.a, stacks.b);
 	// TODO condition for rev_rotate
 	else
-		rotate(*stacks.sa);
-	if (*stacks.sa->last_i == 4 && ft_issorted(stacks.sa->tab.tab, 5))
+		rotate(*stacks.a);
+	put_stack(stacks);
+	if (stacks.a->i_end == 4 && ft_issorted(stacks.a->tab, 5))
 		return ;
 	else
 		algo_5(stacks);

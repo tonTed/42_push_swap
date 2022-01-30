@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:59:37 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/25 19:09:49 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 11:27:57 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 // one or no elements).
 void	swap(t_stack stack)
 {
-	if ((*stack.last_i >= 1))
+	if ((stack.i_end >= 1))
 	{
-		ft_swap(&stack.tab.tab[0], &stack.tab.tab[1]);
+		ft_swap(&stack.tab[0], &stack.tab[1]);
 		print_op("s", stack.name);
 	}
 }
@@ -27,7 +27,7 @@ void	swap(t_stack stack)
 // one or no elements).
 void	sswap(t_stack stack_1, t_stack stack_2)
 {
-	ft_swap(&stack_1.tab.tab[0], &stack_1.tab.tab[1]);
-	ft_swap(&stack_2.tab.tab[0], &stack_2.tab.tab[1]);
+	ft_swap(&stack_1.tab[0], &stack_1.tab[1]);
+	ft_swap(&stack_2.tab[0], &stack_2.tab[1]);
 	ft_putendl_fd("ss", 1);
 }

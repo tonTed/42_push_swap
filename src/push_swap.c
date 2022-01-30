@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/30 11:15:09 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 11:33:44 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	main(int argc, char **argv)
 
 	s = create_stacks(argv, argc);
 
-	// manage_algo(stacks);
+	put_stack(s);
+	manage_algo(s);
 	put_stack(s);
 	freestack(s);
 	return (EXIT_SUCCESS);

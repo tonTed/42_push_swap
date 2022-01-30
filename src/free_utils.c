@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 18:51:31 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/30 11:02:50 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 11:30:08 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	freeexit(char ***tabstr, int **tab, char *message)
 
 void	freestack(t_stacks s)
 {
-	free(s.a.tab);
-	free(s.b.tab);
+	free(s.a->tab);
+	free(s.b->tab);
+	free(s.a);
+	free(s.b);
 }
