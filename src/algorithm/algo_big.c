@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   algo_big.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:38:59 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/30 20:46:31 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/31 11:09:46 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_a(t_stacks s, int min, int max);
+void	split_to_a(t_stacks s, int min, int max);
 
 void	push_b(int nb, t_stacks s)
 {
@@ -70,18 +73,51 @@ int		get_next(t_stack s, int min, int max)
 	return (-1);
 }
 
+int		amount_in_s(t_stack s, int min, int max)
+{
+	int	count;
+
+	count = 0;
+	while (s.i_end >=0)
+	{
+		if (s.tab[s.i_end] >= min && s.tab[s.i_end] <= max)
+			count++;
+		s.i_end--;
+	}
+	return (count);
+}
+
+void	split_to_b2(t_stacks s, int min, int max)
+{
+	int	next;
+	int	med;
+
+	if (max - min < 10)
+	{
+		sort_a(s, min, max);
+		return;
+	}
+	med = (max - min) / 2 + min;
+	next = get_next(*s.a, min, max);
+	if (next == - 1)
+		split_to_a(s, min, med);
+	split_to_b2(s, min, max);
+}
+
 void	split_to_a(t_stacks s, int min, int max)
 {
 	int	next;
+	int	med;
 	
-	if (s.b->i_end < 12)
+	med = (max - min) / 2 + min;
+	if (max - min < 10)
 	{
 		sort_to_a(s);
 		return ;
 	}
-	next = get_next(*s.b, min, max);
+	next = get_next(*s.b, min, med);
 	if (next == -1)
-		split_to_a(s, get_med(*s.b), get_max(*s.b));
+		split_to_b2(s, get_med(*s.b), get_max(*s.b));
 	push_a(next ,s);
 	put_stack(s);
 	split_to_a(s, min, max);
@@ -117,13 +153,9 @@ void	split_to_b(t_stacks s, int min, int max)
 	
 	next = get_next(*s.a, min, max);
 	if (next == -1)
-	{
-		split_to_a(s, get_med(*s.b), get_max(*s.b));
 		return ;
-	}
 	push_b(next ,s);
 	split_to_b(s, min, max);
-	sort_a(s, min, max);
 }
 
 void	algo_big(t_stacks s)
@@ -132,10 +164,8 @@ void	algo_big(t_stacks s)
 
 	put_stack(s);
 	med = get_med(*s.a);
-	// printf("med: %d\n",med);
-	split_to_b(s, get_min(*s.a), med);
-	// sort_a(s, get_min(*s.a), med);
-	split_to_b(s, med + 1, get_max(*s.a));
-	// sort_a(s, med + 1, get_max(*s.a));
+	split_to_b(s, 33, 66);
+	split_to_b(s, 0, 32);
+	split_to_a(s, 0, 32);
 	return ;
 }
