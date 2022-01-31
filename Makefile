@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
+#    By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/01/30 18:21:47 by tonted           ###   ########.fr        #
+#    Updated: 2022/01/31 15:03:28 by tblanco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,14 +82,20 @@ utest	: buildrepo $(OBJS)
 
 test	: docker
 
+viz		: all
+	python3 pyviz.py 28 0 37 15 3 13 5 2 55 32 19 36 8 46 1 16 43 18 27 57 33 51 26 44 41 9 35 38 54 21 17 6 7 49 24 31 40 12 34 50 25 53 23 42 29 4 20 58 48 11 59 45 30 52 14 47 10 39 22 56
 viz3		: all
 	python3 pyviz.py `ruby -e "puts (0..2).to_a.shuffle.join(' ')"`
 viz5		: all
 	python3 pyviz.py `ruby -e "puts (0..4).to_a.shuffle.join(' ')"`
 viz50		: all
 	python3 pyviz.py `ruby -e "puts (0..49).to_a.shuffle.join(' ')"`
+viz60		: all
+	python3 pyviz.py `ruby -e "puts (0..59).to_a.shuffle.join(' ')"`
 viz100		: all
 	python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
+viz500		: all
+	python3 pyviz.py `ruby -e "puts (0..499).to_a.shuffle.join(' ')"`
 
 # VALGRIND = -
 VALGRIND = -valgrind --leak-check=full -q
