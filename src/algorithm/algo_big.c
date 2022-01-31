@@ -3,77 +3,103 @@
 /*                                                        :::      ::::::::   */
 /*   algo_big.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:38:59 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/27 17:02:38 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/29 21:49:13 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	algo_big_first(t_stack sa, t_stack sb)
-{
-	ssize_t	med;
-	int		fu;
+/*
 
-	med = get_med(sa);
-	// TODO do function for get the last bigger number to push 
-	if (*sa.last_i % 2 == 0)
-		fu = (sa.tab.size - *sa.last_i - 2);
-	else
-		fu = (sa.tab.size - *sa.last_i - 1);
-	if (*sa.last_i == 4)
-	{
-		algo_5(sa, sb);
+input : 2 5 4 1 8 0 6 3 9 7
+smaller = 0
+i_last = 9 
+index to push -> (i_last) / 2 = 4
+number to push > smaller + index to push -> 0 + 5  - 1 = 4
+
+input : 2 5 4 1 8 0 6 3 7
+smaller = 0
+i_last = 8 
+index to push -> (i_last) / 2 = 4
+number to push > smaller + index to push -> 0 + 4 = 4
+
+sb : 2 5 4 1 8 0 6 3 9 7
+
+*/
+
+int	split_2(t_stack src, t_stack dst)
+{
+	int		med;
+
+	med = get_med(src);
+	while (is_numbers(src, med) != -1)
+		push_next(src, dst, med);
+	return (med);
+}
+
+void	sort_a(t_stacks stacks, int med)
+{
+	if (med <= stacks.sa->tab.tab[*stacks.sa->last_i])
 		return ;
-	}
-	while (*sa.last_i > med && *sa.last_i > 4)
+	if (is_number(*stacks.sa, stacks.sa->tab.tab[*stacks.sa->last_i] + 1))
 	{
-		if (to_swap(sa, sb))
-			continue ;
-		else if (sa.tab.tab[0] <= (med + fu))
-			push(sa, sb);
+		if (stacks.sa->tab.tab[0] == stacks.sa->tab.tab[*stacks.sa->last_i] + 1)
+			rotate(*stacks.sa);
+		else if (stacks.sa->tab.tab[0] > stacks.sa->tab.tab[1])
+			swap(*stacks.sa);
 		else
-			rotate(sa);
-		// put_stack(sa, sb);
+			push(*stacks.sa, *stacks.sb);
 	}
-	algo_big_first(sa, sb);
+	else if (*stacks.sb->last_i != -1)
+		sort_to_a(*stacks.sb, *stacks.sa);
+	sort_a(stacks, med);
 }
 
-bool	next_push(t_stack src, t_stack dst)
+int	sort_b(t_stacks stacks)
 {
-	ssize_t	i_big;
+	int		med;
 
-	i_big = where_is_bigger(src);
-	if (*src.last_i < 2 || i_big < (*src.last_i / 2))
-		rotate(src);
-	else
-		rev_rotate(src);
-	// put_stack(dst, src); 
-	if (src.tab.tab[0] + 1 == dst.tab.tab[0])
-		return (true);
-	return (false);
-}
-
-void	algo_end(t_stack sa, t_stack sb)
-{
-	while (sa.tab.tab[0] - 1 == sb.tab.tab[0])
+	med = get_med(*stacks.sb);
+	if (*stacks.sb->last_i < 10)
 	{
-		push(sb, sa);
-		// put_stack(sa, sb);
+		while (*stacks.sb->last_i >= 0)
+		{
+			sort_to_a(*stacks.sb, *stacks.sa);
+			rotate(*stacks.sa);
+		}
+		return (0);
 	}
-	if (*sb.last_i < 0)
-		return ;
-	while (!next_push(sb, sa))
-		continue ;
-	algo_end(sa, sb);
+	else
+		split_2(*stacks.sb, *stacks.sa);
+	sort_b(stacks);
+	return (med);
 }
 
-void	algo_big(t_stack sa, t_stack sb)
+void	second_wave(t_stacks stacks)
 {
-	algo_big_first(sa, sb);
-	// put_stack(sa, sb);
-	algo_end(sa, sb);
-	return ;
+	size_t	i;
+
+	i = 0;
+	if (stacks.sa->tab.tab[i] == 0)
+		return ;
+	if (stacks.sa->tab.tab[0] - 1 == stacks.sa->tab.tab[i])
+		rotate(*stacks.sa);
+	else
+		push(*stacks.sa, *stacks.sb);
+	second_wave(stacks);
+}
+
+void	algo_big(t_stacks stacks)
+{
+	int	med;
+
+	med = split_2(*stacks.sa, *stacks.sb);
+	sort_b(stacks);
+	sort_a(stacks, med);
+	second_wave(stacks);
+	sort_b(stacks);
+	sort_a(stacks, *stacks.sa->last_i);
 }

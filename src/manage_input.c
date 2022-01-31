@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:48:48 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/27 15:26:32 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/28 09:51:51 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,6 @@ static char	**create_tabstr(char **argv, int argc)
 	return (tab);
 }
 
-t_tabint	create_tab(char **argv, int argc)
-{
-	char	**tabstr;
-
-	tabstr = create_tabstr(argv, argc);
-	return (create_tabint(tabstr));
-}
-
 t_stack	create_stack(t_tabint tab, bool empty, char name)
 {
 	t_stack		stack;
@@ -91,4 +83,23 @@ t_stack	create_stack(t_tabint tab, bool empty, char name)
 		*stack.last_i = tab.size - 1;
 	}
 	return (stack);
+}
+
+t_stacks	create_stacks(t_stack *sa, t_stack *sb)
+{
+	t_stacks	stacks;
+
+	stacks.sa = sa;
+	stacks.sb = sb;
+	stacks.big_sort = malloc(sizeof(int));
+	*stacks.big_sort = -1;
+	return (stacks);
+}
+
+t_tabint	create_tab(char **argv, int argc)
+{
+	char	**tabstr;
+
+	tabstr = create_tabstr(argv, argc);
+	return (create_tabint(tabstr));
 }

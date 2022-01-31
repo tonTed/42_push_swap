@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/26 22:37:12 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/29 20:51:01 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,40 @@ typedef struct s_stack
 	char		name;
 }				t_stack;
 
+typedef struct s_stacks
+{
+	t_stack		*sa;
+	t_stack		*sb;
+	int			*big_sort;
+	
+}				t_stacks;
+
+
 /* manage input */
 t_tabint	create_tab(char **argv, int argc);
 t_stack		create_stack(t_tabint tab, bool empty, char name);
 int			*tab_convert(int *tab, size_t len);
+t_stacks	create_stacks(t_stack *sa, t_stack *sb);
 
 /* free functions */
 void		freeexit(char ***tabstr, int **tab, char *message);
-void		freestack(t_stack sa, t_stack sb);
+void		freestack(t_stacks stacks);
 
 /* algorithm functions*/
 void		algo_3(t_stack sa);
-void		algo_5(t_stack sa, t_stack sb);
-void		algo_big(t_stack sa, t_stack sb);
-bool		to_swap(t_stack sa, t_stack sb);
-size_t		get_med(t_stack stack);
+void		algo_5(t_stacks stacks);
+void		algo_big(t_stacks stacks);
+int			get_smaller(t_stack stack);
+int			get_med(t_stack stack);
+bool		to_swap(t_stack s1, t_stack s2);
+
+
 size_t		where_is_bigger(t_stack stack);
+ssize_t		is_numbers(t_stack stack, int nb);
+bool		is_number(t_stack stack, int nb);
+void		sort_to_a(t_stack src, t_stack dst);
+void		push_next(t_stack src, t_stack dst, int med);
+void		r_push_next(t_stack src, t_stack dst, int med);
 
 /* operations functions */
 void		print_op(char *op, char stack);
@@ -60,7 +78,7 @@ void		rev_rotate(t_stack stack);
 void		rev_rrotate(t_stack stack_1, t_stack stack_2);
 
 /* DEBUG functions */
-void		put_stack(t_stack stack_a, t_stack stack_b);
+void		put_stack(t_stacks stacks);
 
 # include <stdio.h>
 #endif

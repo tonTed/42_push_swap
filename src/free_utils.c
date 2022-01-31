@@ -6,7 +6,7 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 18:51:31 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/26 18:50:06 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/28 09:50:14 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ void	freeexit(char ***tabstr, int **tab, char *message)
 	exit(EXIT_SUCCESS);
 }
 
-void	freestack(t_stack sa, t_stack sb)
+void	freestack(t_stacks stacks)
 {
-	free(sa.tab.tab);
-	free(sa.last_i);
-	free(sb.tab.tab);
-	free(sb.last_i);
+	free(stacks.sa->tab.tab);
+	free(stacks.sa->last_i);
+	free(stacks.sb->tab.tab);
+	free(stacks.sb->last_i);
+	free(stacks.big_sort);
 }
