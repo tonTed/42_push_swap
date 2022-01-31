@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:15:07 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/30 11:40:33 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 18:07:23 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ static bool	is_smaller_tab(t_stack stack, int num)
 	return (true);
 }
 
-void	algo_3(t_stack a)
+void	algo_3(t_stack *a)
 {
-	if (is_bigger_tab(a, a.tab[0]))
+	if (is_bigger_tab(*a, (*a).tab[0]))
 		rotate(a);
-	else if (is_bigger_tab(a, a.tab[1]))
+	else if (is_bigger_tab(*a, (*a).tab[1]))
 		rev_rotate(a);
-	if (is_smaller_tab(a, a.tab[1]))
+	if (is_smaller_tab(*a, (*a).tab[1]))
 		swap(a);
 }
 
@@ -54,9 +54,9 @@ void	algo_5(t_stacks stacks)
 {
 	if (stacks.a->i_end == 2)
 	{
-		algo_3(*stacks.a);
+		algo_3(stacks.a);
 		if (stacks.b->tab[0] < stacks.b->tab[1])
-			swap(*stacks.b);
+			swap(stacks.b);
 		push(stacks.b, stacks.a);
 		push(stacks.b, stacks.a);
 		return ;
@@ -65,7 +65,7 @@ void	algo_5(t_stacks stacks)
 		push(stacks.a, stacks.b);
 	// TODO condition for rev_rotate
 	else
-		rotate(*stacks.a);
+		rotate(stacks.a);
 	put_stack(stacks);
 	if (stacks.a->i_end == 4 && ft_issorted(stacks.a->tab, 5))
 		return ;

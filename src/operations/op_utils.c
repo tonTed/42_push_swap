@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:58:29 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/30 11:23:00 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/30 18:10:49 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,26 @@ void	print_op(char *op, char stack)
 	ft_putchar_fd('\n', 1);
 }
 
-void	move_down(t_stack s)
+void	move_down(t_stack *s)
 {
 	ssize_t	i;
 
-	i = s.i_end;
+	i = (*s).i_end;
 	while (i > 0)
 	{
-		s.tab[i] = s.tab[i - 1];
+		(*s).tab[i] = (*s).tab[i - 1];
 		i--;
 	}
 }
 
-void	move_up(t_stack s)
+void	move_up(t_stack *s)
 {
 	ssize_t	i;
 
 	i = 0;
-	while (i <= s.i_end)
+	while (i <= (*s).i_end)
 	{
-		s.tab[i] = s.tab[i + 1];
+		(*s).tab[i] = (*s).tab[i + 1];
 		i++;
 	}
 }

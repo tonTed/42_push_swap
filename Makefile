@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/01/29 21:24:19 by tonted           ###   ########.fr        #
+#    Updated: 2022/01/30 18:21:47 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,8 +82,14 @@ utest	: buildrepo $(OBJS)
 
 test	: docker
 
-viz		: all
-	python3 pyviz.py `ruby -e "puts (0..499).to_a.shuffle.join(' ')"`
+viz3		: all
+	python3 pyviz.py `ruby -e "puts (0..2).to_a.shuffle.join(' ')"`
+viz5		: all
+	python3 pyviz.py `ruby -e "puts (0..4).to_a.shuffle.join(' ')"`
+viz50		: all
+	python3 pyviz.py `ruby -e "puts (0..49).to_a.shuffle.join(' ')"`
+viz100		: all
+	python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
 
 # VALGRIND = -
 VALGRIND = -valgrind --leak-check=full -q
