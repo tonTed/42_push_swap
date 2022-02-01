@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 11:48:01 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/30 18:14:53 by tonted           ###   ########.fr       */
+/*   Updated: 2022/01/31 21:29:08 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		get_max(t_stack s)
 
 int		get_med(t_stack s)
 {
-	return((get_max(s) - get_min(s)) / 2);
+	return((get_max(s) - get_min(s)) / 2 + get_min(s));
 }
 
 ssize_t	get_index(int nb, t_stack s)
