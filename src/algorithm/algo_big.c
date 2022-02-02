@@ -6,100 +6,170 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:38:59 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/29 21:49:13 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/01 19:06:26 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
+void	push_b(t_stacks s, int *min, int max);
 
-input : 2 5 4 1 8 0 6 3 9 7
-smaller = 0
-i_last = 9 
-index to push -> (i_last) / 2 = 4
-number to push > smaller + index to push -> 0 + 5  - 1 = 4
-
-input : 2 5 4 1 8 0 6 3 7
-smaller = 0
-i_last = 8 
-index to push -> (i_last) / 2 = 4
-number to push > smaller + index to push -> 0 + 4 = 4
-
-sb : 2 5 4 1 8 0 6 3 9 7
-
-*/
-
-int	split_2(t_stack src, t_stack dst)
+void	dual_swap(t_stacks s)
 {
-	int		med;
-
-	med = get_med(src);
-	while (is_numbers(src, med) != -1)
-		push_next(src, dst, med);
-	return (med);
+	if (s.a->tab[0] > s.a->tab[1] && s.b->tab[0] < s.b->tab[1] && s.b->i_end > 0)
+		sswap(s.a, s.b);
 }
 
-void	sort_a(t_stacks stacks, int med)
+void	push_next(int nb, t_stack *src, t_stack *dst)
 {
-	if (med <= stacks.sa->tab.tab[*stacks.sa->last_i])
+	ssize_t	i_nb;
+
+	if (nb == -1)
 		return ;
-	if (is_number(*stacks.sa, stacks.sa->tab.tab[*stacks.sa->last_i] + 1))
+	i_nb = get_index(nb, *src);
+	if (i_nb == -1)
+		return ;
+	if (i_nb < src->i_end / 2)
 	{
-		if (stacks.sa->tab.tab[0] == stacks.sa->tab.tab[*stacks.sa->last_i] + 1)
-			rotate(*stacks.sa);
-		else if (stacks.sa->tab.tab[0] > stacks.sa->tab.tab[1])
-			swap(*stacks.sa);
-		else
-			push(*stacks.sa, *stacks.sb);
-	}
-	else if (*stacks.sb->last_i != -1)
-		sort_to_a(*stacks.sb, *stacks.sa);
-	sort_a(stacks, med);
-}
-
-int	sort_b(t_stacks stacks)
-{
-	int		med;
-
-	med = get_med(*stacks.sb);
-	if (*stacks.sb->last_i < 10)
-	{
-		while (*stacks.sb->last_i >= 0)
+		while (src->tab[0] != nb)
 		{
-			sort_to_a(*stacks.sb, *stacks.sa);
-			rotate(*stacks.sa);
+			if (src->tab[0] + 1 == dst->tab[0])
+				push(src, dst);
+			rotate(src);
 		}
-		return (0);
 	}
 	else
-		split_2(*stacks.sb, *stacks.sa);
-	sort_b(stacks);
-	return (med);
+	{
+		while (src->tab[0] != nb)
+		{
+			if (src->tab[0] + 1 == dst->tab[0])
+				push(src, dst);
+			rev_rotate(src);
+		}
+	}
+	push(src, dst);
 }
 
-void	second_wave(t_stacks stacks)
+void	next_sort(t_stacks s, int *min)
 {
-	size_t	i;
-
-	i = 0;
-	if (stacks.sa->tab.tab[i] == 0)
-		return ;
-	if (stacks.sa->tab.tab[0] - 1 == stacks.sa->tab.tab[i])
-		rotate(*stacks.sa);
+	if (s.a->tab[0] == *s.max_sort)
+		;
+	else if (s.a->tab[1] == *s.max_sort)
+		swap(s.a);
+	else if (s.b->tab[0] == *s.max_sort)
+		push(s.b, s.a);
 	else
-		push(*stacks.sa, *stacks.sb);
-	second_wave(stacks);
+		return ;
+	rotate(s.a);
+	(*s.max_sort)++;
+	next_sort(s, min);
 }
 
-void	algo_big(t_stacks stacks)
+void	next_sort_s(t_stacks s, int *min)
 {
-	int	med;
+	if (s.a->tab[0] == *s.max_sort)
+		;
+	else if (s.a->tab[1] == *s.max_sort)
+		swap(s.a);
+	else if (s.b->tab[1] == *s.max_sort)
+	{
+		swap(s.b);
+		push(s.b, s.a);
+	}
+	else if (s.b->tab[0] == *s.max_sort)
+		push(s.b, s.a);
+	else
+		return ;
+	rotate(s.a);
+	(*s.max_sort)++;
+	min++;
+	next_sort_s(s, min);
+}
 
-	med = split_2(*stacks.sa, *stacks.sb);
-	sort_b(stacks);
-	sort_a(stacks, med);
-	second_wave(stacks);
-	sort_b(stacks);
-	sort_a(stacks, *stacks.sa->last_i);
+void	sort(t_stacks s, int *min, int max)
+{
+	next_sort_s(s, min);
+	if (*s.max_sort >= max)
+		return ;
+	if (is_in_tab(*s.max_sort, *s.a))
+		push(s.a, s.b);
+	else if (s.b->tab[0] == get_max(*s.b))
+		push(s.b, s.a);
+	else
+		push_next(*s.max_sort, s.b, s.a);
+	sort(s, min, max);
+}
+
+void	split_b(t_stacks s, int *min, int max)
+{
+	if (s.b->i_end < 10)
+	{
+		sort(s, min, max);
+		return ;
+	}
+	next_sort(s, min);
+	if (!range_in_tab(*s.b, *min, max))
+	{
+		int med = get_med(*s.b) + 1;
+		
+		if (s.b->i_end >= 0)
+			split_b(s, &med, get_max(*s.b));
+		push_b(s, min, max);
+		return;
+	}
+	if (is_between(s.b->tab[0], *min, max))
+		push(s.b, s.a);
+	else
+		rotate(s.b);
+	split_b(s, min, max);
+}
+
+void	push_b(t_stacks s, int *min, int max)
+{
+	next_sort(s, min);
+	if (s.b->i_end < 10)
+	{
+		sort(s, min, max);
+		return ;
+	}
+	dual_swap(s);
+	if (is_between(s.a->tab[0], *min, max))
+		push(s.b, s.a);
+	else
+		split_b(s, min, max);
+	push_b(s, min, max);
+}
+
+void	split_a(t_stacks s, int *min, int max)
+{
+	int 	med;
+
+	if (!range_in_tab(*s.a, *min, max))
+	{
+		med = get_med(*s.b);
+		split_b(s, &med, max);
+		return ;
+	}
+	if (is_between(s.a->tab[0], *min, max))
+		push(s.a, s.b);
+	else
+	{
+		if (s.b->tab[0] < s.b->tab[s.b->i_end] && s.b->i_end > 0)
+			rrotate(s.a, s.b);
+		else
+			rotate(s.a);
+	}
+	split_a(s, min, max);
+}
+
+void	algo_big(t_stacks s)
+{
+	int max;
+	int min;
+
+	max = s.a->i_end;
+	min = 0;
+	split_a(s, &min, get_med(*s.a));
+	min = s.a->tab[s.a->i_end] + 1;
+	split_a(s, &min, max);
 }

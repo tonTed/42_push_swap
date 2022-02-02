@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils_algo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/30 18:11:35 by tonted           ###   ########.fr       */
+/*   Created: 2022/02/01 11:40:49 by tonted            #+#    #+#             */
+/*   Updated: 2022/02/01 11:41:59 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	manage_algo(t_stacks s)
+bool	is_in_tab(int nb, t_stack s)
 {
-	if (s.a->i_end == 1)
-		swap(s.a);
-	else if (s.a->i_end == 2)
-		algo_3(s.a);
-	else if (s.a->i_end < 5)
-		algo_5(s);
-	else
-		algo_big(s);
+	while (s.i_end >= 0)
+		if (s.tab[s.i_end--] == nb)
+			return (true);
+	return (false);
 }
 
-int	main(int argc, char **argv)
+bool	is_between(int nb, int min, int max)
 {
-	t_stacks	s;
+	if (nb >= min && nb <= max)
+		return (true);
+	return (false);
+}
 
-	s = create_stacks(argv, argc);
-
-	put_stack(s);
-	manage_algo(s);
-	put_stack(s);
-	freestack(s);
-	return (EXIT_SUCCESS);
+bool	range_in_tab(t_stack s, int min, int max)
+{
+	while (s.i_end >= 0)
+	{
+		if (is_between(s.tab[s.i_end], min, max))
+			return (true);
+		s.i_end--;
+	}
+	return (false);
 }

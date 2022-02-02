@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/29 20:51:01 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/01 16:25:49 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,67 +15,59 @@
 
 # include "../libft/include/libft.h"
 
-# define DEBUG 1 
-
-typedef struct s_tabint
-{
-	int		*tab;
-	size_t	size;
-}				t_tabint;
+# define DEBUG 0 
 
 typedef struct s_stack
 {
-	t_tabint	tab;
-	ssize_t		*last_i;
-	char		name;
+	int		*tab;
+	ssize_t	i_end;
+	char	name;
 }				t_stack;
 
 typedef struct s_stacks
 {
-	t_stack		*sa;
-	t_stack		*sb;
-	int			*big_sort;
-	
+	t_stack		*a;
+	t_stack		*b;
+	int			*max_sort;
 }				t_stacks;
 
 
 /* manage input */
-t_tabint	create_tab(char **argv, int argc);
-t_stack		create_stack(t_tabint tab, bool empty, char name);
+t_stacks	create_stacks(char **argv, int argc);
 int			*tab_convert(int *tab, size_t len);
-t_stacks	create_stacks(t_stack *sa, t_stack *sb);
 
 /* free functions */
 void		freeexit(char ***tabstr, int **tab, char *message);
 void		freestack(t_stacks stacks);
 
 /* algorithm functions*/
-void		algo_3(t_stack sa);
+void		algo_3(t_stack *sa);
 void		algo_5(t_stacks stacks);
 void		algo_big(t_stacks stacks);
 int			get_smaller(t_stack stack);
-int			get_med(t_stack stack);
-bool		to_swap(t_stack s1, t_stack s2);
 
+/* getters */
+int		get_max(t_stack s);
+int		get_min(t_stack s);
+int		get_med(t_stack s);
+ssize_t	get_index(int nb, t_stack s);
 
-size_t		where_is_bigger(t_stack stack);
-ssize_t		is_numbers(t_stack stack, int nb);
-bool		is_number(t_stack stack, int nb);
-void		sort_to_a(t_stack src, t_stack dst);
-void		push_next(t_stack src, t_stack dst, int med);
-void		r_push_next(t_stack src, t_stack dst, int med);
+/* utils algo */
+bool	is_in_tab(int nb, t_stack s);
+bool	is_between(int nb, int min, int max);
+bool	range_in_tab(t_stack s, int min, int max);
 
 /* operations functions */
-void		print_op(char *op, char stack);
-void		move_down(t_stack stack);
-void		move_up(t_stack stack);
-void		swap(t_stack stack);
-void		sswap(t_stack stack_1, t_stack stack_2);
-void		push(t_stack src, t_stack dst);
-void		rotate(t_stack stack);
-void		rrotate(t_stack stack_1, t_stack stack_2);
-void		rev_rotate(t_stack stack);
-void		rev_rrotate(t_stack stack_1, t_stack stack_2);
+void	print_op(char *op, char stack);
+void	move_down(t_stack *s);
+void	move_up(t_stack *s);
+void	swap(t_stack *stack);
+void	sswap(t_stack *stack_1, t_stack *stack_2);
+void	push(t_stack *src, t_stack *dst);
+void	rotate(t_stack *stack);
+void	rrotate(t_stack *stack_1, t_stack *stack_2);
+void	rev_rotate(t_stack *stack);
+void	rev_rrotate(t_stack *stack_1, t_stack *stack_2);
 
 /* DEBUG functions */
 void		put_stack(t_stacks stacks);

@@ -6,34 +6,53 @@
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:48:48 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/28 09:51:51 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/01/31 11:56:51 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_tabint	create_tabint(char **tabstr)
+static t_stacks	create_stack(int **tab, size_t len)
 {
-	t_tabint	tab;
-	size_t		i;
+	t_stacks	s;
 
-	tab.size = ft_strtablen(tabstr);
-	tab.tab = (int *)malloc(sizeof(int) * tab.size);
+	s.a = (t_stack*)malloc(sizeof(t_stack));
+	s.b = (t_stack*)malloc(sizeof(t_stack));
+	s.max_sort = (int *)malloc(sizeof(int));
+	*s.max_sort = 0;
+	s.a->i_end= (ssize_t)(len - 1);
+	s.a->name = 'a';
+	s.a->tab = *tab;
+	s.b->i_end = -1;
+	s.b->name = 'b';
+	s.b->tab = (int *)malloc(sizeof(int) * len);
+	ft_memset(s.b->tab, 0, len);
+	return (s);
+}
+
+static t_stacks	create_tabint(char **tabstr)
+{
+	int		*tab;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strtablen(tabstr);
+	tab = (int *)malloc(sizeof(int) * len);
 	i = 0;
-	while (i < tab.size)
+	while (i < len)
 	{
-		tab.tab[i] = ft_atoi(tabstr[i]);
-		if (tab.tab[i] == 0 && isnumberzero(tabstr[i]) == false)
-			freeexit(&tabstr, &tab.tab, "Error\n");
+		tab[i] = ft_atoi(tabstr[i]);
+		if (tab[i] == 0 && isnumberzero(tabstr[i]) == false)
+			freeexit(&tabstr, &tab, "Error\n");
 		i++;
 	}
-	if (ft_isduplicates(tab.tab, tab.size))
-		freeexit(&tabstr, &tab.tab, "Error\n");
-	if (ft_issorted(tab.tab, tab.size))
-		freeexit(&tabstr, &tab.tab, "");
+	if (ft_isduplicates(tab, len))
+		freeexit(&tabstr, &tab, "Error\n");
+	if (ft_issorted(tab, len))
+		freeexit(&tabstr, &tab, "");
 	ft_freetabstr(&tabstr);
-	tab.tab = tab_convert(tab.tab, tab.size);
-	return (tab);
+	tab = tab_convert(tab, len);
+	return (create_stack(&tab, len));
 }
 
 static char	**create_tabstr(char **argv, int argc)
@@ -63,40 +82,7 @@ static char	**create_tabstr(char **argv, int argc)
 	return (tab);
 }
 
-t_stack	create_stack(t_tabint tab, bool empty, char name)
-{
-	t_stack		stack;
-	t_tabint	tabint;
-
-	stack.last_i = malloc(sizeof(size_t));
-	stack.name = name;
-	if (empty)
-	{
-		tabint.size = tab.size;
-		tabint.tab = (int *)malloc(sizeof(int) * tabint.size);
-		stack.tab = tabint;
-		*stack.last_i = -1;
-	}
-	else
-	{
-		stack.tab = tab;
-		*stack.last_i = tab.size - 1;
-	}
-	return (stack);
-}
-
-t_stacks	create_stacks(t_stack *sa, t_stack *sb)
-{
-	t_stacks	stacks;
-
-	stacks.sa = sa;
-	stacks.sb = sb;
-	stacks.big_sort = malloc(sizeof(int));
-	*stacks.big_sort = -1;
-	return (stacks);
-}
-
-t_tabint	create_tab(char **argv, int argc)
+t_stacks	create_stacks(char **argv, int argc)
 {
 	char	**tabstr;
 
