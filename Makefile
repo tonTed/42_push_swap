@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/02/02 18:27:14 by tonted           ###   ########.fr        #
+#    Updated: 2022/02/02 18:44:29 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,6 +99,8 @@ viz50		: all
 viz60		: all
 	python3 pyviz.py `ruby -e "puts (0..59).to_a.shuffle.join(' ')"`
 viz100		: all
+	python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
+viz101		: all
 	python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
 viz200		: all
 	python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
