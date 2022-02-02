@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/01/31 14:25:08 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/02/01 16:25:49 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ int		get_max(t_stack s);
 int		get_min(t_stack s);
 int		get_med(t_stack s);
 ssize_t	get_index(int nb, t_stack s);
+
+/* utils algo */
+bool	is_in_tab(int nb, t_stack s);
+bool	is_between(int nb, int min, int max);
+bool	range_in_tab(t_stack s, int min, int max);
 
 /* operations functions */
 void	print_op(char *op, char stack);
