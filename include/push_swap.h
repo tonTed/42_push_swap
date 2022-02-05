@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/02/01 16:25:49 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/04 22:29:54 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/include/libft.h"
 
-# define DEBUG 0 
+# define DEBUG 0
 
 typedef struct s_stack
 {
@@ -29,6 +29,7 @@ typedef struct s_stacks
 	t_stack		*a;
 	t_stack		*b;
 	int			*max_sort;
+	int 		*max_flag;
 }				t_stacks;
 
 
