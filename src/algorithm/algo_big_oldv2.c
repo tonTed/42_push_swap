@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:38:59 by tblanco           #+#    #+#             */
-/*   Updated: 2022/02/02 18:31:57 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 09:30:19 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@
 // 	if (!range_in_tab(*s.b, *min, max))
 // 	{
 // 		int med = get_med(*s.b) + 1;
-		
 // 		if (s.b->i_end >= 0)
 // 			split_b(s, &med, get_max(*s.b));
 // 		push_b(s, min, max);

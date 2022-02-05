@@ -6,13 +6,13 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 11:48:01 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/01 16:50:30 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 09:28:49 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		get_min(t_stack s)
+int	get_min(t_stack s)
 {
 	int	min;
 
@@ -26,7 +26,7 @@ int		get_min(t_stack s)
 	return (min);
 }
 
-int		get_max(t_stack s)
+int	get_max(t_stack s)
 {
 	int	max;
 
@@ -40,9 +40,9 @@ int		get_max(t_stack s)
 	return (max);
 }
 
-int		get_med(t_stack s)
+int	get_med(t_stack s)
 {
-	return((get_max(s) - get_min(s)) / 2 + get_min(s));
+	return ((get_max(s) - get_min(s)) / 2 + get_min(s));
 }
 
 ssize_t	get_index(int nb, t_stack s)

@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/02/04 22:29:54 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 09:51:05 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ void		algo_3(t_stack *sa);
 void		algo_5(t_stacks stacks);
 void		algo_big(t_stacks stacks);
 int			get_smaller(t_stack stack);
+int			sort_to_a(t_stacks s);
+void		sort_b(t_stacks s, int min);
+void		push_to_b(t_stacks s, int min, int max);
+
+/* optimization functions */
+void		o_rotate_b(t_stacks s, int med);
+void		opti_sswap(t_stacks s);
+ssize_t		next_to_push_to_a(t_stacks s);
 
 /* getters */
 int		get_max(t_stack s);
