@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 10:59:40 by tblanco           #+#    #+#             */
-/*   Updated: 2022/02/05 10:46:40 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 18:37:37 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	main(int argc, char **argv)
 	t_stacks	s;
 
 	s = create_stacks(argv, argc);
+	if (ft_issorted(s.a->tab, s.a->i_end + 1))
+	{
+		freestack(s);
+		return (EXIT_SUCCESS);
+	}
 	manage_algo(s);
 	freestack(s);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/02/04 20:50:51 by tonted           ###   ########.fr        #
+#    Updated: 2022/02/05 18:43:06 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,8 @@ LIBFTDIR := libft
 
 # Name of the final executable
 NAME = push_swap
-
 # Decide whether the commands will be shwon or not
 VERBOSE = TRUE
-
-ENTRYPOINT = src/push_swap.c
-
-# Unit Test management
-UTEST = .test/_test_main.c
-USRCS = $(wildcard .test/*.c)
 
 # Create the list of directories
 DIRS = $(shell find $(SRCDIR) -type d | sed 's/$(SRCDIR)\///g' | sed -n '1!p')
@@ -36,10 +29,12 @@ OBJDIRS = $(foreach dir, $(DIRS), $(addprefix $(OBJDIR)/, $(dir)))
 # Create a list of *.c sources in DIRS
 SRCS = $(wildcard src/*.c)
 SRCS += $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
-SRCS := $(filter-out $(ENTRYPOINT), $(SRCS))
+SRCS := $(filter-out src/checker/checker.c, $(SRCS))
+SRCSCHECK = src/checker/checker.c
 
 # Define objects for all sources
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+OBJSCHECK = $(SRCSCHECK:%.c=%.o)
 
 # Name the compiler & flags
 CC = clang
@@ -53,19 +48,23 @@ all			: buildrepo $(NAME)
 
 $(NAME)		: $(OBJS)
 	$(HIDE)$(MAKE) -C $(LIBFTDIR)
-	$(HIDE)$(CC) $(CFLAGS) $(ENTRYPOINT) $(OBJS) -L./libft -lft -o $(NAME)
+	$(HIDE)$(CC) $(CFLAGS) $(OBJS) -L./libft -lft -o $(NAME)
 	@printf $(GREEN)"[$@] program created\n"$(RESET)
 	
 clean		:
-	$(HIDE)rm -rf $(OBJDIR)
+	$(HIDE)rm -rf $(OBJDIR) $(OBJSCHECK)
 	$(HIDE)$(MAKE) clean -C $(LIBFTDIR)
 	@printf $(YELLOW)"[$(NAME)] objects removed\n"$(RESET)
 
 fclean		: clean
-	$(HIDE)rm -f $(NAME)
+	$(HIDE)rm -f $(NAME) checker
 	$(HIDE)$(MAKE) fclean -C $(LIBFTDIR)
 
 re			: fclean all
+
+checker		: $(OBJSCHECK)
+	$(HIDE)$(MAKE) -C $(LIBFTDIR)
+	$(HIDE)$(CC) $(CFLAGS) $(OBJSCHECK) -L./libft -lft -o checker
 
 buildrepo	:
 	$(HIDE)$(call make-repo)

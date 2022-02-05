@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:48:48 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/05 10:46:18 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 18:26:56 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ static t_stacks	create_tabint(char **tabstr)
 	}
 	if (ft_isduplicates(tab, len))
 		freeexit(&tabstr, &tab, "Error\n");
-	if (ft_issorted(tab, len))
-		freeexit(&tabstr, &tab, "");
 	ft_freetabstr(&tabstr);
 	tab = tab_convert(tab, len);
 	return (create_stack(&tab, len));
