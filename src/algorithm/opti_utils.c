@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 09:08:54 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/05 09:53:40 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 10:37:26 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	o_rotate_b(t_stacks s, int med)
 
 ssize_t	next_to_push_to_a(t_stacks s)
 {
-	int i;
-	int i_end;
+	int	i;
+	int	i_end;
 	int	max;
 
 	i = 0;
@@ -43,7 +43,7 @@ ssize_t	next_to_push_to_a(t_stacks s)
 	{
 		if (s.b->tab[i] == *s.max_sort || s.b->tab[i] == max)
 			return (i);
-		if (s.b->tab[i_end - i] == *s.max_sort 
+		if (s.b->tab[i_end - i] == *s.max_sort
 			|| s.b->tab[i_end - i] == max)
 			return (i_end - i);
 		i++;

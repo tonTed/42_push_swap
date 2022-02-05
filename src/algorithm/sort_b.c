@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 23:12:59 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/05 10:04:37 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 10:48:51 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,9 @@ void	opti_split_b(t_stacks s, int min, int max)
 		rev_rotate(s.b);
 		push(s.b, s.a);
 	}
-	else if (s.b->tab[1] == *s.max_sort
-		&& (s.b->tab[0] == *s.max_sort + 1 || s.b->tab[s.b->i_end] == *s.max_sort + 1))
-	{
-		if (s.a->tab[0] > s.a->tab[1] && s.a->tab[1] != 0)
-			sswap(s.a, s.b);
-		else
-			swap(s.b);
-		push(s.b, s.a);
-	}
+	else if (s.b->tab[1] == *s.max_sort && (s.b->tab[0] == *s.max_sort + 1
+			|| s.b->tab[s.b->i_end] == *s.max_sort + 1))
+		opti_sswap(s);
 	else
 		return ;
 	(*s.max_sort)++;
@@ -55,11 +49,10 @@ void	opti_sort_b(t_stacks s)
 
 void	push_to_b(t_stacks s, int min, int max)
 {
-	put_stack(s);
 	if (!range_in_tab(*s.a, min, max))
 	{
 		sort_b(s, min);
-		return ; 
+		return ;
 	}
 	// if (!range_in_tab(*s.a, min,(max - min) / 2 + min))
 	// {
@@ -95,7 +88,7 @@ void	split_b(t_stacks s, int min, int max)
 void	sort_b(t_stacks s, int min)
 {
 	int	max;
-	put_stack(s);
+
 	if (s.b->i_end <= 0)
 		return ;
 	max = get_max(*s.b);

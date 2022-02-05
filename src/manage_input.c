@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:48:48 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/04 22:45:21 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 10:46:18 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static t_stacks	create_stack(int **tab, size_t len)
 {
 	t_stacks	s;
 
-	s.a = (t_stack*)malloc(sizeof(t_stack));
-	s.b = (t_stack*)malloc(sizeof(t_stack));
+	s.a = (t_stack *)malloc(sizeof(t_stack));
+	s.b = (t_stack *)malloc(sizeof(t_stack));
 	s.max_sort = (int *)malloc(sizeof(int));
 	*s.max_sort = 0;
-	s.a->i_end= (ssize_t)(len - 1);
+	s.a->i_end = (ssize_t)(len - 1);
 	s.a->name = 'a';
 	s.a->tab = *tab;
 	s.b->i_end = -1;
