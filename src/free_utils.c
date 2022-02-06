@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 18:51:31 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/30 11:30:08 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 21:21:00 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	freestack(t_stacks s)
 	free(s.b->tab);
 	free(s.a);
 	free(s.b);
+	free(s.max_sort);
 }

@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 23:12:59 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/05 10:48:51 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 21:41:26 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,6 @@ void	push_to_b(t_stacks s, int min, int max)
 		sort_b(s, min);
 		return ;
 	}
-	// if (!range_in_tab(*s.a, min,(max - min) / 2 + min))
-	// {
-	// 	sort_b(s, min);
-	// 	return ;
-	// }
 	if (s.a->tab[0] == *s.max_sort)
 	{
 		o_rotate_b(s, (max - min) / 2);
@@ -89,7 +84,7 @@ void	sort_b(t_stacks s, int min)
 {
 	int	max;
 
-	if (s.b->i_end <= 0)
+	if (s.b->i_end < 0)
 		return ;
 	max = get_max(*s.b);
 	while (is_in_tab(*s.max_sort, *s.a))

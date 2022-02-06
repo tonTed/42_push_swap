@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:15:07 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/05 18:37:42 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 21:33:29 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,54 @@ static bool	is_smaller_tab(t_stack stack, int num)
 	return (true);
 }
 
-void	algo_3(t_stack *a)
+void	algo_3(t_stacks s)
 {
-	if (is_bigger_tab(*a, (*a).tab[0]))
-		rotate(a);
-	else if (is_bigger_tab(*a, (*a).tab[1]))
-		rev_rotate(a);
-	if (is_smaller_tab(*a, (*a).tab[1]))
-		swap(a);
+	if (is_bigger_tab(*s.a, s.a->tab[0]))
+	{
+		if (s.b->i_end > 0 && s.b->tab[0] > s.b->tab[1])
+			rrotate(s.a, s.b);
+		else
+			rotate(s.a);
+	}
+	else if (is_bigger_tab(*s.a, s.a->tab[1]))
+	{
+		if (s.b->i_end > 0 && s.b->tab[0] > s.b->tab[1])
+			rev_rrotate(s.a, s.b);
+		else
+			rev_rotate(s.a);
+	}
+	if (is_smaller_tab(*s.a, s.a->tab[1]))
+	{
+		if (s.b->i_end > 0 && s.b->tab[0] > s.b->tab[1])
+			sswap(s.a, s.b);
+		else
+			swap(s.a);
+	}
 }
 
-void	algo_5(t_stacks stacks)
+void	algo_5(t_stacks s)
 {
-	if (stacks.a->i_end == 2)
+	int	min;
+
+	min = get_min(*s.a);
+	if (s.a->i_end == 2)
 	{
-		algo_3(stacks.a);
-		if (stacks.b->tab[0] < stacks.b->tab[1])
-			swap(stacks.b);
-		push(stacks.b, stacks.a);
-		push(stacks.b, stacks.a);
+		algo_3(s);
+		push(s.b, s.a);
+		push(s.b, s.a);
+		if (s.a->tab[0] > s.a->tab[1])
+			swap(s.a);
 		return ;
 	}
-	else if (is_smaller_tab(*stacks.a, stacks.a->tab[0]))
-		push(stacks.a, stacks.b);
-	// TODO condition for rev_rotate
+	else if (s.a->tab[0] == min || s.a->tab[0] == min + 1)
+		push(s.a, s.b);
+	else if (s.a->tab[s.a->i_end] == min || s.a->tab[s.a->i_end] == min + 1)
+		rev_rotate(s.a);
 	else
-		rotate(stacks.a);
-	put_stack(stacks);
-	if (stacks.a->i_end == 4 && ft_issorted(stacks.a->tab, 5))
+		rotate(s.a);
+	put_stack(s);
+	if (s.a->i_end == 4 && ft_issorted(s.a->tab, 5))
 		return ;
 	else
-		algo_5(stacks);
+		algo_5(s);
 }

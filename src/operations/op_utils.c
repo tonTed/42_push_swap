@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:58:29 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/30 18:10:49 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 20:20:44 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	print_op(char *op, char stack)
 {
+	if (!PUT_OP)
+		return ;
 	ft_putstr_fd(op, 1);
 	ft_putchar_fd(stack, 1);
 	ft_putchar_fd('\n', 1);

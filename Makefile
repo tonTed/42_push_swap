@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/02/05 18:43:06 by tonted           ###   ########.fr        #
+#    Updated: 2022/02/05 21:51:05 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,14 @@ OBJDIRS = $(foreach dir, $(DIRS), $(addprefix $(OBJDIR)/, $(dir)))
 # Create a list of *.c sources in DIRS
 SRCS = $(wildcard src/*.c)
 SRCS += $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
-SRCS := $(filter-out src/checker/checker.c, $(SRCS))
-SRCSCHECK = src/checker/checker.c
+SRCS := $(filter-out src/checker/checker.c src/checker/op_utils.c, $(SRCS))
+SRCSCHECK = $(wildcard src/*.c)
+SRCSCHECK += $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+SRCSCHECK := $(filter-out src/push_swap.c src/operations/op_utils.c, $(SRCSCHECK))
 
 # Define objects for all sources
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
-OBJSCHECK = $(SRCSCHECK:%.c=%.o)
+OBJSCHECK = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCSCHECK))
 
 # Name the compiler & flags
 CC = clang
@@ -62,7 +64,7 @@ fclean		: clean
 
 re			: fclean all
 
-checker		: $(OBJSCHECK)
+checker		: buildrepo $(OBJSCHECK)
 	$(HIDE)$(MAKE) -C $(LIBFTDIR)
 	$(HIDE)$(CC) $(CFLAGS) $(OBJSCHECK) -L./libft -lft -o checker
 
@@ -72,23 +74,12 @@ buildrepo	:
 print	:
 	@echo $(DIRS)
 	@echo $(SRCS)
-
-utest	: buildrepo $(OBJS)
-	$(HIDE)$(MAKE) -C $(LIBFTDIR)
-	$(HIDE)$(CC) $(CFLAGS) $(OBJS) $(USRCS) -L./libft -lft -o utest
-	@printf $(BLUE)"[$@] unit_test \n"$(RESET)
-	./utest && rm -rf utest
+	@echo $(SRCSCHECK)
 
 test	: docker
 
-diff		: all
-	./push_swap 75 58 79 40 15 18 39 50 94 13 48 70 14 51 59 91 41 64 86 47 35 93 68 81 71 97 42 80 24 44 20 12 28 57 90 31 10 96 7 4 60 87 61 33 11 54 45 66 69 46 25 23 76 49 85 92 37 2 98 77 16 99 3 1 19 83 8 38 65 95 9 43 36 52 21 0 74 67 89 5 84 88 62 22 32 29 56 34 78 27 82 55 53 6 17 72 73 26 30 63 | wc -l
-	./push_swap 44 73 83 63 62 20 22 87 30 99 33 45 39 4 47 89 27 59 66 35 19 49 75 65 78 37 72 48 21 60 74 17 61 52 32 67 40 42 1 2 36 23 5 80 50 95 88 29 81 34 9 98 13 6 92 56 8 97 41 11 53 71 25 26 68 12 90 24 93 54 38 55 86 58 77 10 82 96 79 46 76 57 84 14 43 85 15 18 7 31 28 69 16 0 91 94 3 70 51 64 | wc -l
-
 viz		: all
 	python3 pyviz.py 60 45 13 4 31 41 10 32 21 49 78 79 70 16 5 2 38 35 51 19 69 17 48 14 55 81 26 84 20 56 11 15 83 64 66 47 1 80 7 43 82 22 54 96 27 23 67 6 87 61 57 85 8 40 89 9 86 3 68 52 74 76 37 58 72 59 24 53 25 28 12 44 93 34 63 36 50 42 99 92 62 98 0 91 75 18 71 88 73 39 46 95 90 29 33 65 77 94 97 30
-viz2	: all
-	python3 pyviz.py 44 73 83 63 62 20 22 87 30 99 33 45 39 4 47 89 27 59 66 35 19 49 75 65 78 37 72 48 21 60 74 17 61 52 32 67 40 42 1 2 36 23 5 80 50 95 88 29 81 34 9 98 13 6 92 56 8 97 41 11 53 71 25 26 68 12 90 24 93 54 38 55 86 58 77 10 82 96 79 46 76 57 84 14 43 85 15 18 7 31 28 69 16 0 91 94 3 70 51 64
 viz3		: all
 	python3 pyviz.py `ruby -e "puts (0..2).to_a.shuffle.join(' ')"`
 viz5		: all
@@ -107,7 +98,7 @@ viz500		: all
 	python3 pyviz.py `ruby -e "puts (0..499).to_a.shuffle.join(' ')"`
 
 # VALGRIND = -
-VALGRIND = -valgrind --leak-check=full -q
+VALGRIND = -valgrind --leak-check=full
 _test	:  re
 # @printf $(BLUE)"\n>>>> "$(RESET)
 # $(VALGRIND) ./push_swap
@@ -159,3 +150,9 @@ ifeq ($(VERBOSE),TRUE)
 else
     HIDE = @
 endif
+
+# push_swap files
+# src/_put_utils.c src/free_utils.c src/get_numbers.c src/manage_input.c src/push_swap.c src/tab_utils.c src/algorithm/algo_big.c src/algorithm/algo_small.c src/algorithm/algo_utils.c src/algorithm/opti_utils.c src/algorithm/sort_b.c src/algorithm/sort_to_a.c src/operations/op_utils.c src/operations/push.c src/operations/rev_rotate.c src/operations/rotate.c src/operations/swap.c
+
+# checker files
+# src/_put_utils.c src/free_utils.c src/get_numbers.c src/manage_input.c src/tab_utils.c src/checker/checker.c src/checker/op_utils.c src/algorithm/algo_big.c src/algorithm/algo_small.c src/algorithm/algo_utils.c src/algorithm/opti_utils.c src/algorithm/sort_b.c src/algorithm/sort_to_a.c src/operations/push.c src/operations/rev_rotate.c src/operations/rotate.c src/operations/swap.c

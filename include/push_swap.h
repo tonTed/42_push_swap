@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 11:25:04 by tblanco           #+#    #+#             */
-/*   Updated: 2022/02/05 10:26:07 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/05 21:43:59 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/include/libft.h"
 
 # define DEBUG 0
+# define PUT_OP 1
 
 typedef struct s_stack
 {
@@ -41,7 +42,7 @@ void		freeexit(char ***tabstr, int **tab, char *message);
 void		freestack(t_stacks stacks);
 
 /* algorithm functions*/
-void		algo_3(t_stack *sa);
+void		algo_3(t_stacks s);
 void		algo_5(t_stacks stacks);
 void		algo_big(t_stacks stacks);
 int			get_smaller(t_stack stack);
