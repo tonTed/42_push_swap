@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:15:07 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/05 21:33:29 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/08 13:44:13 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ void	algo_5(t_stacks s)
 			swap(s.a);
 		return ;
 	}
-	else if (s.a->tab[0] == min || s.a->tab[0] == min + 1)
+	else if (s.a->tab[0] == min || (s.a->tab[0] == min + 1 && s.b->i_end > 0))
 		push(s.a, s.b);
-	else if (s.a->tab[s.a->i_end] == min || s.a->tab[s.a->i_end] == min + 1)
+	else if (s.a->tab[s.a->i_end] == min || (s.a->tab[s.a->i_end] == min + 1
+			&& s.b->i_end > 0))
 		rev_rotate(s.a);
 	else
 		rotate(s.a);
