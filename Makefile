@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
+#    By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 15:51:05 by tblanco           #+#    #+#              #
-#    Updated: 2022/02/05 21:51:05 by tonted           ###   ########.fr        #
+#    Updated: 2022/02/08 09:49:50 by tblanco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ fclean		: clean
 
 re			: fclean all
 
-checker		: buildrepo $(OBJSCHECK)
+bonus		: buildrepo $(OBJSCHECK)
 	$(HIDE)$(MAKE) -C $(LIBFTDIR)
 	$(HIDE)$(CC) $(CFLAGS) $(OBJSCHECK) -L./libft -lft -o checker
 
@@ -79,23 +79,23 @@ print	:
 test	: docker
 
 viz		: all
-	python3 pyviz.py 60 45 13 4 31 41 10 32 21 49 78 79 70 16 5 2 38 35 51 19 69 17 48 14 55 81 26 84 20 56 11 15 83 64 66 47 1 80 7 43 82 22 54 96 27 23 67 6 87 61 57 85 8 40 89 9 86 3 68 52 74 76 37 58 72 59 24 53 25 28 12 44 93 34 63 36 50 42 99 92 62 98 0 91 75 18 71 88 73 39 46 95 90 29 33 65 77 94 97 30
+	python3 .pyviz.py 60 45 13 4 31 41 10 32 21 49 78 79 70 16 5 2 38 35 51 19 69 17 48 14 55 81 26 84 20 56 11 15 83 64 66 47 1 80 7 43 82 22 54 96 27 23 67 6 87 61 57 85 8 40 89 9 86 3 68 52 74 76 37 58 72 59 24 53 25 28 12 44 93 34 63 36 50 42 99 92 62 98 0 91 75 18 71 88 73 39 46 95 90 29 33 65 77 94 97 30
 viz3		: all
-	python3 pyviz.py `ruby -e "puts (0..2).to_a.shuffle.join(' ')"`
+	python3 .pyviz.py `ruby -e "puts (0..2).to_a.shuffle.join(' ')"`
 viz5		: all
-	python3 pyviz.py `ruby -e "puts (0..4).to_a.shuffle.join(' ')"`
+	python3 .pyviz.py `ruby -e "puts (0..4).to_a.shuffle.join(' ')"`
 viz50		: all
-	python3 pyviz.py `ruby -e "puts (0..49).to_a.shuffle.join(' ')"`
+	python3 .pyviz.py `ruby -e "puts (0..49).to_a.shuffle.join(' ')"`
 viz60		: all
-	python3 pyviz.py `ruby -e "puts (0..59).to_a.shuffle.join(' ')"`
+	python3 .pyviz.py `ruby -e "puts (0..59).to_a.shuffle.join(' ')"`
 viz100		: all
-	python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
+	python3 .pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
 viz101		: all
-	python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
+	python3 .pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
 viz200		: all
-	python3 pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
+	python3 .pyviz.py `ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
 viz500		: all
-	python3 pyviz.py `ruby -e "puts (0..499).to_a.shuffle.join(' ')"`
+	python3 .pyviz.py `ruby -e "puts (0..499).to_a.shuffle.join(' ')"`
 
 # VALGRIND = -
 VALGRIND = -valgrind --leak-check=full

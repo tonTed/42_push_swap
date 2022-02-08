@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:48:48 by tonted            #+#    #+#             */
-/*   Updated: 2022/02/05 18:26:56 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/08 09:48:24 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_stacks	create_stack(int **tab, size_t len)
 	s.a->tab = *tab;
 	s.b->i_end = -1;
 	s.b->name = 'b';
-	s.b->tab = (int *)malloc(sizeof(int) * len);
+	s.b->tab = (int *)malloc(sizeof(int) * (len + 1));
 	ft_memset(s.b->tab, 0, len);
 	return (s);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 00:59:00 by tonted            #+#    #+#             */
-/*   Updated: 2022/01/30 11:01:11 by tonted           ###   ########.fr       */
+/*   Updated: 2022/02/08 09:48:47 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	*tab_convert(int *tab, size_t len)
 	int		*tabnew;
 
 	i_new = 0;
-	tabnew = (int *)malloc(sizeof(int) * len);
+	tabnew = (int *)malloc(sizeof(int) * (len + 1));
 	while (i_new < len)
 	{
 		i_tab = 0;
